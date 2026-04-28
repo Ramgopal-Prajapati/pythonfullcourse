@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ram Sir | Python Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--saffron:#FF6B1A;--deep:#0A0F1E;--card:#111827;--card2:#0D1526;--border:#1E2D45;--gold:#FFB800;--green:#00D084;--text:#E2E8F0;--muted:#64748B;--white:#FFFFFF;}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--deep);color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--saffron);border-radius:3px}
+header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,15,30,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 4%}
+.logo{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;color:#fff}.logo span{color:var(--saffron)}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:var(--muted);font-size:.87rem;text-decoration:none;font-weight:500;transition:color .2s}nav a:hover{color:#fff}
+.nav-cta{background:var(--saffron)!important;color:#fff!important;padding:7px 18px;border-radius:8px;font-weight:700!important}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer}.ham span{width:22px;height:2px;background:var(--text);border-radius:2px}
+.mob-nav{display:none;flex-direction:column;position:fixed;top:62px;left:0;right:0;background:rgba(10,15,30,.98);padding:16px 4%;gap:14px;z-index:199;border-bottom:1px solid var(--border)}
+.mob-nav a{color:var(--text);text-decoration:none;font-size:.95rem;padding:7px 0;border-bottom:1px solid var(--border)}.mob-nav.open{display:flex}
+.hero{min-height:100vh;padding:100px 5% 60px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(255,107,26,.13) 0%,transparent 70%)}
+.float-code{position:absolute;font-family:'Fira Code',monospace;font-size:.72rem;color:rgba(255,107,26,.18);pointer-events:none;line-height:1.7}
+.fc1{top:14%;left:3%}.fc2{top:18%;right:4%}.fc3{bottom:18%;left:4%}.fc4{bottom:15%;right:5%}
+.badge-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,26,.1);border:1px solid rgba(255,107,26,.3);padding:5px 16px;border-radius:100px;font-size:.78rem;color:var(--saffron);font-weight:700;margin-bottom:20px;animation:fadeUp .5s ease both}
+.hero h1{font-family:'Baloo 2',cursive;font-size:clamp(2.2rem,5.5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:18px;animation:fadeUp .6s .1s ease both}
+.hero h1 .hl{background:linear-gradient(90deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{max-width:580px;font-size:1.05rem;color:var(--muted);line-height:1.7;margin-bottom:32px;animation:fadeUp .6s .2s ease both}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .3s ease both}
+.btn-p{background:var(--saffron);color:#fff;padding:13px 28px;border-radius:10px;font-weight:700;font-size:.95rem;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,107,26,.4)}
+.btn-s{background:transparent;color:var(--text);padding:13px 28px;border-radius:10px;border:1.5px solid var(--border);font-weight:600;font-size:.95rem;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.btn-s:hover{border-color:var(--saffron);color:var(--saffron)}
+.hero-stats{display:flex;gap:44px;margin-top:52px;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s .4s ease both}
+.stat .n{font-family:'Baloo 2',cursive;font-size:2rem;font-weight:800;color:var(--saffron)}.stat .l{font-size:.78rem;color:var(--muted);margin-top:2px}
+section{padding:80px 4%}
+.sec-label{display:inline-block;background:rgba(255,107,26,.1);border:1px solid rgba(255,107,26,.25);color:var(--saffron);padding:4px 13px;border-radius:100px;font-size:.73rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-family:'Baloo 2',cursive;font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;margin-bottom:10px;line-height:1.2}
+.sec-sub{color:var(--muted);max-width:540px;line-height:1.7}.center{text-align:center}.center .sec-sub{margin:0 auto}
+.reveal{opacity:0;transform:translateY(28px);transition:.6s}.reveal.vis{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+#chapters{background:var(--card2)}
+.ch-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0 28px}
+.ch-tab{padding:8px 18px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s}
+.ch-tab.on,.ch-tab:hover{background:var(--saffron);border-color:var(--saffron);color:#fff}
+.ch-panel{display:none}.ch-panel.on{display:block}
+.ch-header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden}
+.ch-header::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--saffron),var(--gold))}
+.ch-num{font-size:.75rem;color:var(--saffron);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.ch-header h2{font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;margin-bottom:10px}
+.ch-header p{color:var(--muted);font-size:.92rem;line-height:1.7}
+.theory-block{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 28px;margin-bottom:20px}
+.theory-block h3{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:14px}
+.theory-block p,.theory-block li{font-size:.9rem;color:var(--muted);line-height:1.75}
+.theory-block ul{padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.theory-block li::marker{color:var(--saffron)}.theory-block strong{color:var(--text)}
+.table-wrap{overflow-x:auto;margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{background:rgba(255,107,26,.12);color:var(--saffron);padding:10px 14px;text-align:left;font-weight:700;border:1px solid var(--border)}
+td{padding:9px 14px;border:1px solid var(--border);color:var(--muted)}tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
+.code-block{margin-bottom:20px}
+.code-block .cb-header{background:#0D1526;border:1px solid var(--border);border-radius:10px 10px 0 0;padding:10px 18px;display:flex;justify-content:space-between;align-items:center}
+.cb-lang{font-size:.75rem;color:var(--saffron);font-weight:700;letter-spacing:1px}
+.cb-copy{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;font-size:.75rem;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif}
+.cb-copy:hover{border-color:var(--saffron);color:var(--saffron)}
+.code-block pre{background:#060B16;border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px;padding:20px;overflow-x:auto}
+.code-block code{font-family:'Fira Code',monospace;font-size:.84rem;line-height:1.8;color:#E2E8F0}
+.kw{color:#FF79C6}.fn{color:#50FA7B}.st{color:#F1FA8C}.cm{color:#6272A4;font-style:italic}.nu{color:#BD93F9}.op{color:#FF79C6}
+.output-block{background:#060B16;border:1px solid var(--green);border-radius:10px;padding:16px 20px;margin-bottom:20px}
+.output-label{font-size:.72rem;color:var(--green);font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.output-block pre{font-family:'Fira Code',monospace;font-size:.82rem;color:#a0e4a0;line-height:1.7}
+.tip-box{background:rgba(255,184,0,.07);border:1px solid rgba(255,184,0,.2);border-radius:12px;padding:16px 20px;margin-bottom:20px;font-size:.88rem;color:var(--muted);line-height:1.7}
+.tip-box strong{color:var(--gold)}
+#questions{background:var(--deep)}
+.qa-list{display:flex;flex-direction:column;gap:14px;margin-top:40px}
+.qa-item{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.qa-q{padding:18px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:background .2s}
+.qa-q:hover{background:rgba(255,107,26,.06)}
+.qa-q-text{font-size:.92rem;font-weight:700;color:var(--white)}
+.qa-badge{padding:3px 10px;border-radius:100px;font-size:.7rem;font-weight:700;white-space:nowrap}
+.b-easy{background:rgba(0,208,132,.1);color:var(--green);border:1px solid rgba(0,208,132,.2)}
+.b-med{background:rgba(255,184,0,.1);color:var(--gold);border:1px solid rgba(255,184,0,.2)}
+.b-hard{background:rgba(255,107,26,.1);color:var(--saffron);border:1px solid rgba(255,107,26,.2)}
+.qa-arrow{color:var(--saffron);font-size:1.1rem;transition:transform .3s;flex-shrink:0}
+.qa-item.open .qa-arrow{transform:rotate(180deg)}
+.qa-a{display:none;padding:0 22px 18px;font-size:.88rem;color:var(--muted);line-height:1.75;border-top:1px solid var(--border)}
+.qa-a strong{color:var(--text)}.qa-a code{font-family:'Fira Code',monospace;background:rgba(255,107,26,.1);color:var(--saffron);padding:1px 6px;border-radius:4px;font-size:.82rem}
+.qa-item.open .qa-a{display:block}
+#trainer{background:var(--card2)}
+.trainer-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:center;margin-top:48px}
+.trainer-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;text-align:center}
+.t-avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-size:3.5rem;margin:0 auto 16px;border:4px solid var(--border)}
+.t-name{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:4px}
+.t-handle{color:var(--saffron);font-size:.87rem;font-weight:600;margin-bottom:16px}
+.t-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.ts{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px}
+.ts .n{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:var(--gold)}.ts .l{font-size:.72rem;color:var(--muted)}
+.trainer-info h2{font-family:'Baloo 2',cursive;font-size:2rem;font-weight:800;margin-bottom:6px}
+.trainer-info .handle{color:var(--saffron);font-weight:600;margin-bottom:18px;font-size:.9rem}
+.trainer-info p{color:var(--muted);line-height:1.75;margin-bottom:14px;font-size:.92rem}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.pill{background:rgba(255,107,26,.1);border:1px solid rgba(255,107,26,.2);color:var(--saffron);padding:5px 14px;border-radius:100px;font-size:.8rem;font-weight:600}
+.soc-btns{display:flex;gap:10px;flex-wrap:wrap}
+.soc-btn{padding:10px 18px;border-radius:8px;font-size:.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:.2s}
+.soc-btn.wa{background:#25D366;color:#fff}.soc-btn.wa:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,211,102,.3)}
+.soc-btn.web{background:rgba(255,255,255,.07);color:var(--text);border:1px solid var(--border)}.soc-btn.web:hover{border-color:var(--saffron);color:var(--saffron)}
+#why{background:var(--deep)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;margin-top:44px}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;text-align:center;transition:.2s}
+.why-card:hover{border-color:rgba(255,107,26,.3);transform:translateY(-3px)}
+.wi{font-size:2rem;margin-bottom:14px}.why-card h3{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:8px}.why-card p{font-size:.82rem;color:var(--muted);line-height:1.6}
+#query{background:var(--card2)}
+.form-box{max-width:660px;margin:44px auto 0;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:44px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.f-full{grid-column:1/-1}
+.field label{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:'Inter',sans-serif;font-size:.88rem;padding:11px 15px;outline:none;transition:border-color .2s}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--saffron)}
+.field select option{background:#1a2535}.field textarea{resize:vertical;min-height:100px}
+.submit-btn{width:100%;background:linear-gradient(90deg,var(--saffron),#FF8C42);color:#fff;border:none;padding:15px;border-radius:12px;font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:6px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:9px}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,107,26,.4)}
+.wa-note{text-align:center;margin-top:13px;font-size:.8rem;color:var(--muted)}.wa-note span{color:#25D366;font-weight:600}
+footer{background:#060B16;border-top:1px solid var(--border);padding:48px 4% 28px}
+.f-grid-ft{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.fb .logo{font-size:1.6rem;display:block;margin-bottom:10px}.fb p{font-size:.83rem;color:var(--muted);line-height:1.7;max-width:270px}
+.fc-ft h4{font-weight:700;color:#fff;margin-bottom:14px;font-size:.92rem}.fc-ft ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fc-ft ul li a{color:var(--muted);text-decoration:none;font-size:.83rem;transition:color .2s}.fc-ft ul li a:hover{color:var(--saffron)}
+.f-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.f-bottom p{font-size:.78rem;color:var(--muted)}
+@media(max-width:768px){nav{display:none}.ham{display:flex}.trainer-wrap{grid-template-columns:1fr}.f-grid-ft{grid-template-columns:1fr}.form-box{padding:24px 18px}}
+@media(max-width:480px){.f-grid{grid-template-columns:1fr!important}.hero-stats{gap:24px}.t-stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Ram<span>Sir</span></div>
+  <nav>
+    <a href="#chapters">Chapters</a>
+    <a href="#questions">Questions</a>
+    <a href="#why">Why Us</a>
+    <a href="#trainer">Trainer</a>
+    <a href="#query" class="nav-cta">🚀 Enroll Now</a>
+  </nav>
+  <div class="ham" onclick="document.getElementById('mn').classList.toggle('open')"><span></span><span></span><span></span></div>
+</header>
+<div class="mob-nav" id="mn">
+  <a href="#chapters" onclick="document.getElementById('mn').classList.remove('open')">📚 Chapters</a>
+  <a href="#questions" onclick="document.getElementById('mn').classList.remove('open')">❓ Questions</a>
+  <a href="#why" onclick="document.getElementById('mn').classList.remove('open')">⭐ Why Us</a>
+  <a href="#trainer" onclick="document.getElementById('mn').classList.remove('open')">👨‍💻 Trainer</a>
+  <a href="#query" onclick="document.getElementById('mn').classList.remove('open')">🚀 Enroll Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="float-code fc1">def python():<br>&nbsp;&nbsp;print("Hello")<br>&nbsp;&nbsp;return True</div>
+  <div class="float-code fc2">class Ram:<br>&nbsp;&nbsp;def __init__(self):<br>&nbsp;&nbsp;&nbsp;&nbsp;self.skill="🔥"</div>
+  <div class="float-code fc3">for i in range(250):<br>&nbsp;&nbsp;learn(i)<br>&nbsp;&nbsp;practice(i)</div>
+  <div class="float-code fc4">if you_code:<br>&nbsp;&nbsp;success=True<br>else: try_again()</div>
+  <div class="badge-pill">🐍 Python 3.x · Zero to OOP · 250+ Questions</div>
+  <h1>Learn Python,<br><span class="hl">Change the World</span></h1>
+  <p>Master Python with Ram Sir — from absolute basics to OOP, with real code examples, detailed theory, and hands-on practice. Perfect for beginners!</p>
+  <div class="hero-btns">
+    <a href="#chapters" class="btn-p">📚 Explore Chapters</a>
+    <a href="#query" class="btn-s">🚀 Enroll Now</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="n">250+</div><div class="l">Practice Questions</div></div>
+    <div class="stat"><div class="n">16</div><div class="l">Chapters</div></div>
+    <div class="stat"><div class="n">500+</div><div class="l">Students Trained</div></div>
+    <div class="stat"><div class="n">100%</div><div class="l">Code Examples</div></div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section id="chapters">
+  <span class="sec-label">Course Curriculum</span>
+  <h2 class="sec-title">16 Chapters — Full Theory + Code + Output</h2>
+  <p class="sec-sub">Every chapter includes complete theory, real-life analogies, working code with syntax highlighting, and expected output.</p>
+
+  <div class="ch-tabs">
+    <button class="ch-tab on"  onclick="showCh('c1',this)">Ch 1: Introduction</button>
+    <button class="ch-tab" onclick="showCh('c2',this)">Ch 2: Variables</button>
+    <button class="ch-tab" onclick="showCh('c3',this)">Ch 3: Operators</button>
+    <button class="ch-tab" onclick="showCh('c4',this)">Ch 4: Decision Making</button>
+    <button class="ch-tab" onclick="showCh('c5',this)">Ch 5: Loops</button>
+    <button class="ch-tab" onclick="showCh('c6',this)">Ch 6: Lists</button>
+    <button class="ch-tab" onclick="showCh('c7',this)">Ch 7: Tuple/Set/Dict</button>
+    <button class="ch-tab" onclick="showCh('c8',this)">Ch 8: Functions</button>
+    <button class="ch-tab" onclick="showCh('c9',this)">Ch 9: 2D Arrays</button>
+    <button class="ch-tab" onclick="showCh('c10',this)">Ch 10: Modules</button>
+    <button class="ch-tab" onclick="showCh('c11',this)">Ch 11: OOP</button>
+    <button class="ch-tab" onclick="showCh('c12',this)">Ch 12: File+SQLite</button>
+  </div>
+
+  <!-- CH1 -->
+  <div class="ch-panel on" id="c1">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 1</div><h2>Introduction to Python</h2><p>What is Python, why learn it, installation, your first program, types of errors, and programming paradigms.</p></div>
+    <div class="theory-block reveal">
+      <h3>🐍 1.1 What is Python?</h3>
+      <p>Python is a <strong>high-level, interpreted, dynamically typed, general-purpose programming language</strong> created by <strong>Guido van Rossum</strong> in 1991. It is famous for its simple, English-like syntax.</p>
+      <ul style="margin-top:10px">
+        <li><strong>High-Level:</strong> Closer to human language, far from machine language</li>
+        <li><strong>Interpreted:</strong> Code runs line by line — logical errors are found immediately</li>
+        <li><strong>Dynamic Memory:</strong> Memory is allocated automatically at runtime</li>
+        <li><strong>Multi-Purpose:</strong> Web, Data Science, AI/ML, Automation, Games, IoT</li>
+      </ul>
+    </div>
+    <div class="theory-block reveal">
+      <h3>🆚 1.2 Python vs Java / C++</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Feature</th><th>Python</th><th>Java / C++</th></tr>
+        <tr><td>Syntax</td><td>Simple, English-like</td><td>Complex, verbose</td></tr>
+        <tr><td>Lines of Code</td><td>5–10 lines</td><td>20–50 lines for same task</td></tr>
+        <tr><td>Learning Curve</td><td>Easy (1–2 weeks basics)</td><td>Hard (months)</td></tr>
+        <tr><td>Error Finding</td><td>Line-by-line (interpreter)</td><td>Compile-time only</td></tr>
+        <tr><td>Memory</td><td>Dynamic (automatic)</td><td>Manual management</td></tr>
+        <tr><td>Use Cases</td><td>Data Science, AI, Web, Automation</td><td>Enterprise apps, Game engines</td></tr>
+      </table></div>
+    </div>
+    <div class="theory-block reveal">
+      <h3>⚠️ 1.3 Types of Errors</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Error Type</th><th>Definition</th><th>Example</th><th>When Detected</th></tr>
+        <tr><td>Syntax Error</td><td>Wrong grammar/structure of code</td><td><code>print 'hello'</code> (missing parens)</td><td>Before running</td></tr>
+        <tr><td>Logical Error</td><td>Wrong logic — code runs but gives wrong result</td><td><code>sum = a - b</code> (should be +)</td><td>After running</td></tr>
+        <tr><td>Runtime Error</td><td>Error occurs while program is running</td><td>Dividing by zero</td><td>During execution</td></tr>
+      </table></div>
+    </div>
+    <div class="theory-block reveal">
+      <h3>💻 Q1. First Python Program — Hello World</h3>
+      <p><strong>Theory:</strong> <code>print()</code> is a built-in function that displays output in the terminal. f-string lets you mix text and variable values in one line.</p>
+      <p style="margin-top:8px"><strong>Real-Life:</strong> <code>print()</code> is your voice, the terminal is the speaker.</p>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q1. Hello World</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># Your very first Python program!</span>
+<span class="cm"># print() function displays text on screen</span>
+<span class="fn">print</span>(<span class="st">"Hello World!"</span>)
+<span class="fn">print</span>(<span class="st">"Hello, I'm Ram Sir"</span>)
+
+<span class="cm"># f-string: mix text and math/variables in one line</span>
+<span class="fn">print</span>(<span class="st">f"10 + 10 = {10+10}"</span>)
+
+num = <span class="nu">20</span>
+<span class="fn">print</span>(<span class="st">f"Hello from Ram Sir — num is {num}"</span>)
+
+<span class="cm"># Multiple values in one print</span>
+<span class="fn">print</span>(<span class="st">"10 + 10 ="</span>, <span class="nu">10</span>+<span class="nu">10</span>)
+
+<span class="cm"># Check Python version</span>
+<span class="kw">import</span> sys
+<span class="fn">print</span>(<span class="st">"Python version:"</span>, sys.version)</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Hello World!
+Hello, I'm Ram Sir
+10 + 10 = 20
+Hello from Ram Sir — num is 20
+10 + 10 = 20</pre></div>
+    <div class="tip-box reveal"><strong>💡 Ram Sir's Tip:</strong> Always use f-strings (<code>f"Hello {name}"</code>) instead of concatenation (<code>"Hello " + name</code>) — it's cleaner and faster!</div>
+  </div>
+
+  <!-- CH2 -->
+  <div class="ch-panel" id="c2">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 2</div><h2>Variables &amp; Data Types</h2><p>Variables, all 8 data types, type conversion, type checking, static vs dynamic input.</p></div>
+    <div class="theory-block reveal">
+      <h3>📦 What is a Variable?</h3>
+      <p>A variable is a <strong>container or memory location</strong> used to store data values. In Python, you don't need to declare the type — Python identifies it automatically.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Data Type</th><th>Description</th><th>Example</th><th>Type Check Output</th></tr>
+        <tr><td>int</td><td>Whole numbers</td><td>num = 10</td><td>&lt;class 'int'&gt;</td></tr>
+        <tr><td>float</td><td>Decimal numbers</td><td>num = 10.34</td><td>&lt;class 'float'&gt;</td></tr>
+        <tr><td>str</td><td>Text / String</td><td>name = "ram"</td><td>&lt;class 'str'&gt;</td></tr>
+        <tr><td>bool</td><td>True or False</td><td>flag = True</td><td>&lt;class 'bool'&gt;</td></tr>
+        <tr><td>complex</td><td>Complex numbers</td><td>c = 3+4j</td><td>&lt;class 'complex'&gt;</td></tr>
+        <tr><td>None</td><td>No value / null</td><td>x = None</td><td>&lt;class 'NoneType'&gt;</td></tr>
+        <tr><td>list</td><td>Mutable ordered collection</td><td>[1,2,3]</td><td>&lt;class 'list'&gt;</td></tr>
+        <tr><td>tuple</td><td>Immutable ordered collection</td><td>(1,2,3)</td><td>&lt;class 'tuple'&gt;</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q2. All Data Types</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># INTEGER — whole numbers</span>
+num = <span class="nu">10</span>
+<span class="fn">print</span>(<span class="st">"Integer value :"</span>, num)
+<span class="fn">print</span>(<span class="st">"Type:"</span>, <span class="fn">type</span>(num))    <span class="cm"># &lt;class 'int'&gt;</span>
+
+<span class="cm"># FLOAT — decimal numbers</span>
+num1 = <span class="nu">10.34</span>
+<span class="fn">print</span>(<span class="st">f"Float value   : {num1}"</span>)
+<span class="fn">print</span>(<span class="st">"Type:"</span>, <span class="fn">type</span>(num1))   <span class="cm"># &lt;class 'float'&gt;</span>
+
+<span class="cm"># STRING — text</span>
+char   = <span class="st">"a"</span>
+string = <span class="st">"ram"</span>
+<span class="fn">print</span>(<span class="st">f"Character : {char}"</span>)
+<span class="fn">print</span>(<span class="st">f"String    : {string}"</span>, <span class="fn">type</span>(string))
+
+<span class="cm"># BOOLEAN</span>
+flag = <span class="kw">True</span>
+<span class="fn">print</span>(<span class="st">f"Boolean   : {flag}"</span>, <span class="fn">type</span>(flag))
+
+<span class="cm"># TYPE CONVERSION</span>
+x = <span class="st">"100"</span>        <span class="cm"># String</span>
+y = <span class="fn">int</span>(x)      <span class="cm"># → integer</span>
+z = <span class="fn">float</span>(x)    <span class="cm"># → float</span>
+<span class="fn">print</span>(<span class="st">"str → int  :"</span>, y, <span class="fn">type</span>(y))
+<span class="fn">print</span>(<span class="st">"str → float:"</span>, z, <span class="fn">type</span>(z))
+
+<span class="cm"># Complex number</span>
+c = <span class="nu">3</span> + <span class="nu">4j</span>
+<span class="fn">print</span>(<span class="st">"Complex:"</span>, c, <span class="fn">type</span>(c))
+
+<span class="cm"># None type</span>
+nothing = <span class="kw">None</span>
+<span class="fn">print</span>(<span class="st">"None:"</span>, nothing, <span class="fn">type</span>(nothing))</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Integer value : 10   &lt;class 'int'&gt;
+Float value   : 10.34  &lt;class 'float'&gt;
+String    : ram  &lt;class 'str'&gt;
+Boolean   : True  &lt;class 'bool'&gt;
+str → int  : 100  &lt;class 'int'&gt;
+str → float: 100.0  &lt;class 'float'&gt;
+Complex: (3+4j)  &lt;class 'complex'&gt;</pre></div>
+    <div class="theory-block reveal">
+      <h3>⌨️ Q3. Static vs Dynamic Input</h3>
+      <p><strong>Theory:</strong> <code>input()</code> reads user input. By default it returns a <strong>STRING</strong>. Use <code>int()</code> or <code>float()</code> to convert.</p>
+      <p style="margin-top:8px"><strong>Static values</strong> = hardcoded in the program. <strong>Dynamic values</strong> = entered by the user at runtime.</p>
+      <p style="margin-top:8px"><strong>Real-Life:</strong> Static = price printed on a menu board. Dynamic = customer telling you their order (changes every time).</p>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q3. Dynamic Input</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># WRONG way — string concatenation!</span>
+num1 = <span class="fn">input</span>(<span class="st">"Enter num1: "</span>)
+num2 = <span class="fn">input</span>(<span class="st">"Enter num2: "</span>)
+<span class="fn">print</span>(<span class="st">f"Sum: {num1+num2}"</span>)   <span class="cm"># Outputs "1020" NOT 30!</span>
+
+<span class="cm"># CORRECT way — convert to int first</span>
+num1 = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter num1: "</span>))
+num2 = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter num2: "</span>))
+<span class="fn">print</span>(<span class="st">f"Sum of {num1} and {num2} = {num1+num2}"</span>)  <span class="cm"># 30 ✓</span>
+
+<span class="cm"># Float input with GST calculation</span>
+price = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Enter price: "</span>))
+gst   = price * <span class="nu">0.18</span>
+<span class="fn">print</span>(<span class="st">f"Price: {price}  GST: {gst:.2f}  Total: {price+gst:.2f}"</span>)
+
+<span class="cm"># Two inputs on one line</span>
+a, b = <span class="fn">input</span>(<span class="st">"Enter two numbers: "</span>).<span class="fn">split</span>()
+a, b = <span class="fn">int</span>(a), <span class="fn">int</span>(b)
+<span class="fn">print</span>(<span class="st">"Product:"</span>, a * b)</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Enter num1: 10   Enter num2: 20
+Sum of 10 and 20 = 30
+Price: 100.0  GST: 18.00  Total: 118.00</pre></div>
+    <div class="tip-box reveal"><strong>💡 Key Rule:</strong> <code>input()</code> ALWAYS returns a string. Never forget to convert: <code>num = int(input("Enter number: "))</code></div>
+  </div>
+
+  <!-- CH3 -->
+  <div class="ch-panel" id="c3">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 3</div><h2>Operators</h2><p>Arithmetic, Assignment, Relational, Logical, Identity, Membership, and Bitwise operators — all with examples.</p></div>
+    <div class="theory-block reveal">
+      <h3>🔢 All Operator Types</h3>
+      <p>An operator is a special symbol used to perform operations on data values (variables).</p>
+      <div class="table-wrap"><table>
+        <tr><th>Operator Type</th><th>Symbols</th><th>Example</th><th>Result</th></tr>
+        <tr><td>Arithmetic</td><td>+ - * / % ** //</td><td>10 + 3</td><td>13</td></tr>
+        <tr><td>Assignment</td><td>= += -= *= /= //= **=</td><td>x += 5</td><td>x = x + 5</td></tr>
+        <tr><td>Relational</td><td>== != &gt; &lt; &gt;= &lt;=</td><td>10 &gt; 5</td><td>True</td></tr>
+        <tr><td>Logical</td><td>and or not</td><td>True and False</td><td>False</td></tr>
+        <tr><td>Identity</td><td>is / is not</td><td>x is y</td><td>True if same object</td></tr>
+        <tr><td>Membership</td><td>in / not in</td><td>'a' in 'ram'</td><td>True</td></tr>
+        <tr><td>Bitwise</td><td>&amp; | ^ ~ &lt;&lt; &gt;&gt;</td><td>5 &amp; 3</td><td>1</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q4. All Operators</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># ===== ARITHMETIC OPERATORS =====</span>
+num1, num2 = <span class="nu">10</span>, <span class="nu">3</span>
+<span class="fn">print</span>(<span class="st">f"Addition      : {num1+num2}"</span>)    <span class="cm"># 13</span>
+<span class="fn">print</span>(<span class="st">f"Subtraction   : {num1-num2}"</span>)    <span class="cm"># 7</span>
+<span class="fn">print</span>(<span class="st">f"Multiplication: {num1*num2}"</span>)    <span class="cm"># 30</span>
+<span class="fn">print</span>(<span class="st">f"Division      : {num1/num2}"</span>)    <span class="cm"># 3.333...</span>
+<span class="fn">print</span>(<span class="st">f"Floor Division: {num1//num2}"</span>)   <span class="cm"># 3 (integer division)</span>
+<span class="fn">print</span>(<span class="st">f"Modulus       : {num1%num2}"</span>)    <span class="cm"># 1 (remainder)</span>
+<span class="fn">print</span>(<span class="st">f"Power         : {num1**num2}"</span>)   <span class="cm"># 1000 (10^3)</span>
+
+<span class="cm"># ===== ASSIGNMENT OPERATORS =====</span>
+x = <span class="nu">10</span>
+x += <span class="nu">5</span>;  <span class="fn">print</span>(<span class="st">"+= :"</span>, x)    <span class="cm"># 15</span>
+x -= <span class="nu">3</span>;  <span class="fn">print</span>(<span class="st">"-= :"</span>, x)    <span class="cm"># 12</span>
+x *= <span class="nu">2</span>;  <span class="fn">print</span>(<span class="st">"*= :"</span>, x)    <span class="cm"># 24</span>
+x //= <span class="nu">5</span>; <span class="fn">print</span>(<span class="st">"//= :"</span>, x)   <span class="cm"># 4</span>
+x **= <span class="nu">3</span>; <span class="fn">print</span>(<span class="st">"**= :"</span>, x)   <span class="cm"># 64</span>
+
+<span class="cm"># ===== LOGICAL OPERATORS =====</span>
+age, has_id = <span class="nu">20</span>, <span class="kw">True</span>
+<span class="fn">print</span>(<span class="st">"Can vote:"</span>, age >= <span class="nu">18</span> <span class="kw">and</span> has_id)   <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="kw">True</span> <span class="kw">and</span> <span class="kw">False</span>)    <span class="cm"># False</span>
+<span class="fn">print</span>(<span class="kw">True</span> <span class="kw">or</span> <span class="kw">False</span>)     <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="kw">not</span> <span class="kw">True</span>)           <span class="cm"># False</span>
+
+<span class="cm"># ===== IDENTITY OPERATOR =====</span>
+<span class="cm"># Python creates same address for same small integer values</span>
+n1, n2, n3 = <span class="nu">10</span>, <span class="nu">10</span>, <span class="nu">30</span>
+<span class="fn">print</span>(<span class="st">f"Address n1: {id(n1)}"</span>)
+<span class="fn">print</span>(<span class="st">f"Address n2: {id(n2)}"</span>)   <span class="cm"># Same as n1!</span>
+<span class="fn">print</span>(<span class="st">"n1 is n2:"</span>, n1 <span class="kw">is</span> n2)    <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="st">"n1 is n3:"</span>, n1 <span class="kw">is</span> n3)    <span class="cm"># False</span>
+
+<span class="cm"># ===== MEMBERSHIP OPERATOR =====</span>
+lst = [<span class="nu">12</span>, <span class="nu">34</span>, <span class="nu">54</span>, <span class="nu">32</span>, <span class="st">"ram"</span>]
+<span class="fn">print</span>(<span class="st">"ram" in lst</span>)      <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="nu">99</span> <span class="kw">in</span> lst)          <span class="cm"># False</span>
+student = <span class="st">"ramgopal prajapati"</span>
+<span class="fn">print</span>(<span class="st">"ram"</span> <span class="kw">in</span> student)   <span class="cm"># True</span></code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Addition: 13   Subtraction: 7   Multiplication: 30
+Floor Division: 3   Modulus: 1   Power: 1000
++= : 15   -= : 12   *= : 24
+Can vote: True
+n1 is n2: True   n1 is n3: False
+"ram" in list: True</pre></div>
+  </div>
+
+  <!-- CH4 -->
+  <div class="ch-panel" id="c4">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 4</div><h2>Decision Making</h2><p>if, if-else, if-elif-else, nested conditions, ternary operator, and match statement.</p></div>
+    <div class="theory-block reveal">
+      <h3>🔀 What is Decision Making?</h3>
+      <p>Decision making is the process of choosing a path based on a condition. It controls program flow based on whether conditions are True or False.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Statement</th><th>When to Use</th></tr>
+        <tr><td>if</td><td>Single condition, single block of code</td></tr>
+        <tr><td>if...else</td><td>One condition — two possible outcomes</td></tr>
+        <tr><td>if...elif...else</td><td>Multiple conditions, multiple code blocks</td></tr>
+        <tr><td>Nested if</td><td>Conditions inside other conditions</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q5. All Decision Statements</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># ===== IF...ELSE — Voting System =====</span>
+age = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter your age: "</span>))
+<span class="kw">if</span> age >= <span class="nu">18</span>:
+    <span class="fn">print</span>(<span class="st">"You are eligible to VOTE"</span>)
+    <span class="fn">print</span>(<span class="st">"Please register at the election office"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"You are NOT eligible to vote"</span>)
+    <span class="fn">print</span>(<span class="st">"Come back after you turn 18"</span>)
+
+<span class="cm"># ===== IF...ELIF...ELSE — Grade System =====</span>
+marks = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter marks (0-100): "</span>))
+<span class="kw">if</span>   marks >= <span class="nu">90</span>: <span class="fn">print</span>(<span class="st">"Grade: A+ (Excellent!)"</span>)
+<span class="kw">elif</span> marks >= <span class="nu">80</span>: <span class="fn">print</span>(<span class="st">"Grade: A  (Very Good)"</span>)
+<span class="kw">elif</span> marks >= <span class="nu">70</span>: <span class="fn">print</span>(<span class="st">"Grade: B  (Good)"</span>)
+<span class="kw">elif</span> marks >= <span class="nu">60</span>: <span class="fn">print</span>(<span class="st">"Grade: C  (Average)"</span>)
+<span class="kw">elif</span> marks >= <span class="nu">40</span>: <span class="fn">print</span>(<span class="st">"Grade: D  (Pass)"</span>)
+<span class="kw">else</span>:             <span class="fn">print</span>(<span class="st">"Grade: F  (Fail) — Study harder!"</span>)
+
+<span class="cm"># ===== NESTED IF — Voting with gender =====</span>
+age = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter age: "</span>))
+<span class="kw">if</span> age >= <span class="nu">18</span>:
+    gender = <span class="fn">input</span>(<span class="st">"Enter gender (male/female): "</span>).<span class="fn">lower</span>()
+    <span class="kw">if</span> gender == <span class="st">"male"</span>:
+        <span class="fn">print</span>(<span class="st">"Male voter — eligible!"</span>)
+        category = <span class="fn">input</span>(<span class="st">"Category (general/sc/st/obc): "</span>).<span class="fn">lower</span>()
+        <span class="kw">if</span>   category == <span class="st">"general"</span>:       <span class="fn">print</span>(<span class="st">"Voting booth: Section A"</span>)
+        <span class="kw">elif</span> category <span class="kw">in</span> [<span class="st">"sc"</span>, <span class="st">"st"</span>]: <span class="fn">print</span>(<span class="st">"Voting booth: Section B (Reserved)"</span>)
+        <span class="kw">else</span>:                            <span class="fn">print</span>(<span class="st">"Voting booth: Section C"</span>)
+    <span class="kw">elif</span> gender == <span class="st">"female"</span>:
+        <span class="fn">print</span>(<span class="st">"Female voter — priority line available!"</span>)
+<span class="kw">else</span>:
+    years_left = <span class="nu">18</span> - age
+    <span class="fn">print</span>(<span class="st">f"Not eligible. {years_left} more years to wait."</span>)
+
+<span class="cm"># ===== TERNARY (Short-hand if-else) =====</span>
+num    = <span class="nu">10</span>
+result = <span class="st">"Even"</span> <span class="kw">if</span> num % <span class="nu">2</span> == <span class="nu">0</span> <span class="kw">else</span> <span class="st">"Odd"</span>
+<span class="fn">print</span>(result)   <span class="cm"># Even</span>
+
+<span class="cm"># ===== MATCH STATEMENT (Python 3.10+) =====</span>
+day = <span class="fn">input</span>(<span class="st">"Enter day number (1-7): "</span>)
+<span class="kw">match</span> day:
+    <span class="kw">case</span> <span class="st">"1"</span>: <span class="fn">print</span>(<span class="st">"Monday"</span>)
+    <span class="kw">case</span> <span class="st">"2"</span>: <span class="fn">print</span>(<span class="st">"Tuesday"</span>)
+    <span class="kw">case</span> <span class="st">"6"</span> | <span class="st">"7"</span>: <span class="fn">print</span>(<span class="st">"Weekend!"</span>)
+    <span class="kw">case</span> _: <span class="fn">print</span>(<span class="st">"Other weekday"</span>)</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>age = 20  → You are eligible to VOTE
+marks = 85 → Grade: A (Very Good)
+num = 10   → Even</pre></div>
+  </div>
+
+  <!-- CH5 -->
+  <div class="ch-panel" id="c5">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 5</div><h2>Loops</h2><p>for loop, while loop, do-while pattern, range() variations, break/continue/pass — complete guide.</p></div>
+    <div class="theory-block reveal">
+      <h3>🔁 What are Loops?</h3>
+      <p>Loops repeat a block of code multiple times. Real-life examples: Music playlist (repeat songs), Gallery photos (slide through), Search results (go through each result).</p>
+      <div class="table-wrap"><table>
+        <tr><th>Loop Type</th><th>When to Use</th><th>Python Syntax</th></tr>
+        <tr><td>for loop</td><td>When we KNOW the number of iterations</td><td>for i in range(1, 6)</td></tr>
+        <tr><td>while loop</td><td>When we DON'T know the end condition</td><td>while pin != password</td></tr>
+        <tr><td>do-while pattern</td><td>Execute at least once, then check condition</td><td>while True: ... if cond: break</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q6. for Loop + range() Variations</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># BASIC for loop</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">6</span>):
+    <span class="fn">print</span>(<span class="st">"I'm Ram Sir"</span>, i)      <span class="cm"># prints 1 to 5</span>
+
+<span class="cm"># With condition inside loop</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">6</span>):
+    <span class="kw">if</span> i == <span class="nu">3</span>: <span class="fn">print</span>(<span class="st">"This is number 3!"</span>)
+    <span class="fn">print</span>(<span class="st">"I'm Ram Sir"</span>, i)
+
+<span class="cm"># Skip every other — step = 2</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">6</span>, <span class="nu">2</span>):
+    <span class="fn">print</span>(i, end=<span class="st">" "</span>)   <span class="cm"># 1 3 5</span>
+
+<span class="cm"># Countdown (reverse)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">6</span>, <span class="nu">0</span>, <span class="op">-</span><span class="nu">1</span>):
+    <span class="fn">print</span>(<span class="st">"Countdown:"</span>, i)   <span class="cm"># 6,5,4,3,2,1</span>
+
+<span class="cm"># Sum of N natural numbers</span>
+n, total = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter N: "</span>)), <span class="nu">0</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, n+<span class="nu">1</span>): total += i
+<span class="fn">print</span>(<span class="st">f"Sum of 1 to {n} = {total}"</span>)
+
+<span class="cm"># Factorial</span>
+num, fact = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Factorial of: "</span>)), <span class="nu">1</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, num+<span class="nu">1</span>): fact *= i
+<span class="fn">print</span>(<span class="st">f"Factorial of {num} = {fact}"</span>)
+
+<span class="cm"># Prime number check</span>
+num, is_prime = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Check prime: "</span>)), <span class="kw">True</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">2</span>, num):
+    <span class="kw">if</span> num % i == <span class="nu">0</span>: is_prime = <span class="kw">False</span>; <span class="kw">break</span>
+<span class="fn">print</span>(<span class="st">f"{num} is {'PRIME' if is_prime and num>1 else 'NOT prime'}"</span>)
+
+<span class="cm"># Loop over a list</span>
+fruits = [<span class="st">"apple"</span>, <span class="st">"mango"</span>, <span class="st">"banana"</span>, <span class="st">"orange"</span>]
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits: <span class="fn">print</span>(<span class="st">"Fruit:"</span>, fruit)
+
+<span class="cm"># Loop over a string</span>
+<span class="kw">for</span> letter <span class="kw">in</span> <span class="st">"RAMGOPAL"</span>:
+    <span class="fn">print</span>(letter, end=<span class="st">" "</span>)   <span class="cm"># R A M G O P A L</span></code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q7. while Loop + Dynamic Calculator</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># WHILE LOOP</span>
+i = <span class="nu">0</span>
+<span class="kw">while</span> i < <span class="nu">5</span>:
+    <span class="fn">print</span>(<span class="st">"Hello I'm Ram Sir"</span>, i)
+    i += <span class="nu">1</span>
+<span class="fn">print</span>(<span class="st">"Loop finished!"</span>)
+
+<span class="cm"># PASSWORD VERIFICATION</span>
+correct_pin = <span class="nu">123</span>
+pin = <span class="nu">0</span>
+<span class="kw">while</span> pin != correct_pin:
+    pin = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter your PIN: "</span>))
+    <span class="kw">if</span> pin != <span class="nu">123</span>:
+        <span class="fn">print</span>(<span class="st">f"{pin} is incorrect — Try again!"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">f"{pin} is correct — Access Granted! ✓"</span>)
+
+<span class="cm"># DO-WHILE PATTERN</span>
+<span class="kw">while</span> <span class="kw">True</span>:
+    num = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter number (0 to stop): "</span>))
+    <span class="fn">print</span>(<span class="st">f"You entered: {num}"</span>)
+    <span class="kw">if</span> num <= <span class="nu">0</span>: <span class="kw">break</span>
+<span class="fn">print</span>(<span class="st">"Done!"</span>)
+
+<span class="cm"># DYNAMIC CALCULATOR</span>
+<span class="fn">print</span>(<span class="st">"===== Welcome to Ram Sir Calculator ====="</span>)
+num = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter first number: "</span>))
+<span class="kw">while</span> <span class="kw">True</span>:
+    op = <span class="fn">input</span>(<span class="st">"Enter operator (+, -, *, /) or = to exit: "</span>)
+    <span class="kw">if</span> op == <span class="st">"="</span>: <span class="kw">break</span>
+    snum = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter second number: "</span>))
+    <span class="kw">if</span>   op == <span class="st">"+"</span>: num += snum
+    <span class="kw">elif</span> op == <span class="st">"-"</span>: num -= snum
+    <span class="kw">elif</span> op == <span class="st">"*"</span>: num *= snum
+    <span class="kw">elif</span> op == <span class="st">"/"</span>: num /= snum
+    <span class="kw">else</span>: <span class="fn">print</span>(<span class="st">"Invalid operator!"</span>)
+<span class="fn">print</span>(<span class="st">"Final Result:"</span>, num)
+
+<span class="cm"># BREAK — exit loop immediately</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">10</span>):
+    <span class="kw">if</span> i == <span class="nu">5</span>: <span class="kw">break</span>
+    <span class="fn">print</span>(i, end=<span class="st">" "</span>)   <span class="cm"># 1 2 3 4</span>
+
+<span class="cm"># CONTINUE — skip current iteration</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">10</span>):
+    <span class="kw">if</span> i % <span class="nu">2</span> == <span class="nu">0</span>: <span class="kw">continue</span>   <span class="cm"># skip even numbers</span>
+    <span class="fn">print</span>(i, end=<span class="st">" "</span>)            <span class="cm"># 1 3 5 7 9</span></code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Hello I'm Ram Sir 0 ... Hello I'm Ram Sir 4
+Enter PIN: 456 → incorrect   Enter PIN: 123 → Access Granted! ✓
+Sum of 1 to 5 = 15   Factorial of 5 = 120
+5 is PRIME   R A M G O P A L</pre></div>
+  </div>
+
+  <!-- CH6 -->
+  <div class="ch-panel" id="c6">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 6</div><h2>Lists</h2><p>Create, access, slice, modify, all methods, enumerate, and list comprehension.</p></div>
+    <div class="theory-block reveal">
+      <h3>📋 What is a List?</h3>
+      <p>A List is a <strong>mutable (changeable), ordered collection</strong> of multiple items. It uses square brackets <code>[]</code>. Index starts at 0. Negative index <code>-1</code> is the last element.</p>
+      <p style="margin-top:8px"><strong>Real-Life:</strong> Like a tiffin box with numbered slots — slot 0 = chapati, slot 1 = dal. You can add, remove, or replace items.</p>
+      <ul style="margin-top:10px">
+        <li><strong>Mutable:</strong> Values can be changed after creation</li>
+        <li><strong>Ordered:</strong> Insertion order is maintained</li>
+        <li><strong>Mixed Types:</strong> Can store different data types together</li>
+        <li><strong>Indexed:</strong> Elements accessed by position</li>
+      </ul>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q8. Lists — All Operations</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># CREATE LIST</span>
+num  = [<span class="nu">12</span>, <span class="nu">563</span>, <span class="nu">76</span>]                     <span class="cm"># same type</span>
+num1 = [<span class="nu">12</span>, <span class="st">"ramgopal"</span>, <span class="nu">45.54</span>, <span class="kw">True</span>]    <span class="cm"># mixed types!</span>
+
+<span class="cm"># ACCESS elements</span>
+<span class="fn">print</span>(<span class="st">"First element :"</span>, num[<span class="nu">0</span>])    <span class="cm"># 12</span>
+<span class="fn">print</span>(<span class="st">"Last element  :"</span>, num[<span class="op">-</span><span class="nu">1</span>])   <span class="cm"># 76</span>
+
+<span class="cm"># LOOP with enumerate</span>
+<span class="kw">for</span> i, val <span class="kw">in</span> <span class="fn">enumerate</span>(num):
+    <span class="fn">print</span>(<span class="st">f"Index {i}: value {val}"</span>)
+
+num = [<span class="nu">12</span>, <span class="nu">563</span>, <span class="nu">23</span>, <span class="nu">76</span>, <span class="nu">67</span>, <span class="st">"ram"</span>, <span class="st">"gopal"</span>]
+<span class="fn">print</span>(<span class="st">"Reverse:"</span>, num[::<span class="op">-</span><span class="nu">1</span>])            <span class="cm"># reverse slicing</span>
+
+<span class="cm"># APPEND — add to end</span>
+num.<span class="fn">append</span>(<span class="nu">34</span>)
+<span class="fn">print</span>(<span class="st">"After append :"</span>, num)
+
+<span class="cm"># INSERT — add at specific index</span>
+num.<span class="fn">insert</span>(<span class="nu">2</span>, <span class="nu">3467</span>)
+<span class="fn">print</span>(<span class="st">"After insert  :"</span>, num)
+
+<span class="cm"># POP — remove last element</span>
+num.<span class="fn">pop</span>()
+<span class="fn">print</span>(<span class="st">"After pop     :"</span>, num)
+
+<span class="cm"># REMOVE — remove by value</span>
+num.<span class="fn">remove</span>(<span class="nu">76</span>)
+num.<span class="fn">remove</span>(<span class="st">"ram"</span>)
+
+<span class="cm"># REPLACE at index</span>
+num[<span class="nu">2</span>] = <span class="nu">176</span>
+<span class="fn">print</span>(<span class="st">"Sub-list [2:5]:"</span>, num[<span class="nu">2</span>:<span class="nu">5</span>])
+
+<span class="cm"># LIST METHODS</span>
+marks = [<span class="nu">85</span>, <span class="nu">92</span>, <span class="nu">70</span>, <span class="nu">88</span>, <span class="nu">95</span>, <span class="nu">78</span>]
+<span class="fn">print</span>(<span class="st">"Sum    :"</span>, <span class="fn">sum</span>(marks))       <span class="cm"># 508</span>
+<span class="fn">print</span>(<span class="st">"Min    :"</span>, <span class="fn">min</span>(marks))       <span class="cm"># 70</span>
+<span class="fn">print</span>(<span class="st">"Max    :"</span>, <span class="fn">max</span>(marks))       <span class="cm"># 95</span>
+<span class="fn">print</span>(<span class="st">"Length :"</span>, <span class="fn">len</span>(marks))       <span class="cm"># 6</span>
+<span class="fn">print</span>(<span class="st">"Sorted :"</span>, <span class="fn">sorted</span>(marks))    <span class="cm"># [70,78,85,88,92,95]</span>
+marks.<span class="fn">sort</span>()        <span class="cm"># sort in-place (ascending)</span>
+marks.<span class="fn">reverse</span>()     <span class="cm"># reverse in-place</span>
+marks.<span class="fn">extend</span>([<span class="nu">100</span>, <span class="nu">55</span>])   <span class="cm"># add multiple items</span>
+marks.<span class="fn">count</span>(<span class="nu">85</span>)     <span class="cm"># count occurrences</span>
+marks.<span class="fn">index</span>(<span class="nu">92</span>)     <span class="cm"># find index of value</span>
+
+<span class="cm"># LIST COMPREHENSION</span>
+squares   = [x**<span class="nu">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">6</span>)]
+even_nums = [x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">20</span>) <span class="kw">if</span> x % <span class="nu">2</span> == <span class="nu">0</span>]
+upper     = [n.<span class="fn">upper</span>() <span class="kw">for</span> n <span class="kw">in</span> [<span class="st">"ram"</span>, <span class="st">"gopal"</span>, <span class="st">"priya"</span>]]
+<span class="fn">print</span>(<span class="st">"Squares:"</span>, squares)     <span class="cm"># [1, 4, 9, 16, 25]</span>
+<span class="fn">print</span>(<span class="st">"Evens  :"</span>, even_nums)
+<span class="fn">print</span>(<span class="st">"Upper  :"</span>, upper)</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>First: 12   Last: 76
+Reverse: ['gopal', 'ram', 67, 76, 23, 563, 12]
+Sum: 508  Min: 70  Max: 95  Length: 6
+Squares: [1, 4, 9, 16, 25]
+Upper: ['RAM', 'GOPAL', 'PRIYA']</pre></div>
+  </div>
+
+  <!-- CH7 -->
+  <div class="ch-panel" id="c7">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 7</div><h2>Tuples, Dictionaries &amp; Sets</h2><p>Immutable Tuple, Key-Value Dictionary, and Unique Set — complete guide for all three.</p></div>
+    <div class="theory-block reveal">
+      <h3>📊 Quick Comparison</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Type</th><th>Symbol</th><th>Mutable?</th><th>Ordered?</th><th>Duplicates?</th></tr>
+        <tr><td>List</td><td>[]</td><td>✅ Yes</td><td>✅ Yes</td><td>✅ Yes</td></tr>
+        <tr><td>Tuple</td><td>()</td><td>❌ No</td><td>✅ Yes</td><td>✅ Yes</td></tr>
+        <tr><td>Set</td><td>{}</td><td>✅ Yes</td><td>❌ No</td><td>❌ No</td></tr>
+        <tr><td>Dictionary</td><td>{key:val}</td><td>✅ Yes</td><td>✅ Yes</td><td>Keys: No</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q9. Tuples</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># CREATE TUPLE — immutable!</span>
+num = (<span class="nu">12</span>, <span class="nu">23</span>, <span class="nu">34</span>, <span class="nu">45</span>, <span class="nu">56</span>)
+
+<span class="fn">print</span>(<span class="st">"First  :"</span>, num[<span class="nu">0</span>])         <span class="cm"># 12</span>
+<span class="fn">print</span>(<span class="st">"Reverse:"</span>, num[::<span class="op">-</span><span class="nu">1</span>])       <span class="cm"># (56,45,34,23,12)</span>
+
+<span class="kw">for</span> i <span class="kw">in</span> num: <span class="fn">print</span>(i, end=<span class="st">" "</span>)
+
+<span class="cm"># MERGE tuples — creates a new tuple</span>
+num1   = (<span class="nu">12</span>, <span class="nu">23</span>, <span class="nu">34</span>)
+merged = num + num1
+<span class="fn">print</span>(<span class="st">"\nMerged:"</span>, merged)
+
+<span class="cm"># REPEAT tuple</span>
+repeated = num1 * <span class="nu">3</span>
+
+<span class="cm"># CANNOT modify directly! Convert to list, edit, convert back</span>
+lst    = <span class="fn">list</span>(num)
+lst[<span class="nu">0</span>] = <span class="nu">999</span>
+num    = <span class="fn">tuple</span>(lst)
+<span class="fn">print</span>(<span class="st">"Modified:"</span>, num)
+
+<span class="cm"># TUPLE METHODS</span>
+marks_tuple = (<span class="nu">85</span>, <span class="nu">90</span>, <span class="nu">78</span>, <span class="nu">90</span>, <span class="nu">85</span>, <span class="nu">92</span>)
+<span class="fn">print</span>(<span class="st">"Count 90:"</span>, marks_tuple.<span class="fn">count</span>(<span class="nu">90</span>))    <span class="cm"># 2</span>
+<span class="fn">print</span>(<span class="st">"Index 78:"</span>, marks_tuple.<span class="fn">index</span>(<span class="nu">78</span>))    <span class="cm"># 2</span>
+<span class="fn">print</span>(<span class="st">"Min:"</span>, <span class="fn">min</span>(marks_tuple), <span class="st">"Max:"</span>, <span class="fn">max</span>(marks_tuple))
+
+<span class="cm"># UNPACKING</span>
+a, b, c = (<span class="nu">10</span>, <span class="nu">20</span>, <span class="nu">30</span>)
+<span class="fn">print</span>(<span class="st">f"a={a}, b={b}, c={c}"</span>)
+
+<span class="cm"># SWAP using tuple</span>
+x, y = <span class="nu">5</span>, <span class="nu">10</span>
+x, y = y, x
+<span class="fn">print</span>(<span class="st">"After swap: x="</span>, x, <span class="st">"y="</span>, y)   <span class="cm"># x=10, y=5</span></code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q10. Dictionaries</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># BASIC DICTIONARY</span>
+students = {
+    <span class="st">"name"</span>   : <span class="st">"Ramgopal"</span>,
+    <span class="st">"roll"</span>   : <span class="nu">23</span>,
+    <span class="st">"class"</span>  : <span class="st">"1st year"</span>,
+    <span class="st">"subject"</span>: <span class="st">"python"</span>
+}
+<span class="fn">print</span>(students[<span class="st">"name"</span>])   <span class="cm"># Ramgopal</span>
+
+<span class="kw">for</span> key, val <span class="kw">in</span> students.<span class="fn">items</span>():
+    <span class="fn">print</span>(<span class="st">f"{key} : {val}"</span>)
+
+<span class="cm"># NESTED DICTIONARY</span>
+students = {
+    <span class="st">"name"</span>       : [<span class="st">"ram"</span>, <span class="st">"gopal"</span>, <span class="st">"ayush"</span>],
+    <span class="st">"roll"</span>       : (<span class="nu">12</span>, <span class="nu">43</span>, <span class="nu">54</span>, <span class="nu">65</span>),
+    <span class="st">"class"</span>      : <span class="st">"1st year"</span>,
+    <span class="st">"programming"</span>: {<span class="st">"c++"</span>: <span class="nu">4</span>, <span class="st">"java"</span>: <span class="nu">5</span>}
+}
+<span class="fn">print</span>(students[<span class="st">"programming"</span>])   <span class="cm"># {'c++': 4, 'java': 5}</span>
+
+<span class="cm"># MODIFY</span>
+students[<span class="st">"class"</span>] = <span class="st">"4th year"</span>
+students[<span class="st">"programming"</span>][<span class="st">"c++"</span>] = <span class="nu">400</span>
+
+<span class="cm"># Rename key: "java" → "python"</span>
+students[<span class="st">"programming"</span>][<span class="st">"python"</span>] = students[<span class="st">"programming"</span>].<span class="fn">pop</span>(<span class="st">"java"</span>)
+
+<span class="cm"># DICTIONARY METHODS</span>
+d = {<span class="st">"a"</span>:<span class="nu">1</span>, <span class="st">"b"</span>:<span class="nu">2</span>, <span class="st">"c"</span>:<span class="nu">3</span>}
+<span class="fn">print</span>(<span class="fn">list</span>(d.<span class="fn">keys</span>()))              <span class="cm"># ['a', 'b', 'c']</span>
+<span class="fn">print</span>(<span class="fn">list</span>(d.<span class="fn">values</span>()))            <span class="cm"># [1, 2, 3]</span>
+<span class="fn">print</span>(d.<span class="fn">get</span>(<span class="st">"z"</span>, <span class="st">"Not found"</span>))    <span class="cm"># safe access</span>
+d.<span class="fn">update</span>({<span class="st">"d"</span>: <span class="nu">4</span>, <span class="st">"e"</span>: <span class="nu">5</span>})
+d.<span class="fn">pop</span>(<span class="st">"a"</span>)</code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q11. Sets</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># CREATE SET — duplicates are removed automatically!</span>
+num = {<span class="nu">4</span>, <span class="nu">3</span>, <span class="nu">2</span>, <span class="nu">6</span>, <span class="nu">1</span>, <span class="nu">6</span>, <span class="nu">2</span>, <span class="st">"ram"</span>, <span class="nu">4</span>}
+<span class="fn">print</span>(num)   <span class="cm"># Duplicates auto-removed!</span>
+
+color = {<span class="st">"red"</span>, <span class="st">"green"</span>}
+color.<span class="fn">add</span>(<span class="st">"yellow"</span>)               <span class="cm"># add single element</span>
+color.<span class="fn">update</span>([<span class="st">"blue"</span>, <span class="st">"brown"</span>])   <span class="cm"># add multiple elements</span>
+color.<span class="fn">remove</span>(<span class="st">"red"</span>)               <span class="cm"># error if not found</span>
+color.<span class="fn">discard</span>(<span class="st">"xyz"</span>)             <span class="cm"># safe — no error</span>
+
+<span class="cm"># SET MATHEMATICS</span>
+A = {<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>}
+B = {<span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>, <span class="nu">6</span>, <span class="nu">7</span>}
+<span class="fn">print</span>(<span class="st">"Union        :"</span>, A | B)    <span class="cm"># {1,2,3,4,5,6,7}</span>
+<span class="fn">print</span>(<span class="st">"Intersection :"</span>, A &amp; B)   <span class="cm"># {3,4,5}</span>
+<span class="fn">print</span>(<span class="st">"Difference   :"</span>, A - B)    <span class="cm"># {1,2}</span>
+<span class="fn">print</span>(<span class="st">"Sym. Diff    :"</span>, A ^ B)    <span class="cm"># {1,2,6,7}</span>
+<span class="fn">print</span>(<span class="st">"Is subset    :"</span>, {<span class="nu">1</span>,<span class="nu">2</span>}.<span class="fn">issubset</span>(A))   <span class="cm"># True</span>
+
+<span class="cm"># REMOVE DUPLICATES from a list using set</span>
+names  = [<span class="st">"ram"</span>, <span class="st">"gopal"</span>, <span class="st">"ram"</span>, <span class="st">"priya"</span>, <span class="st">"gopal"</span>]
+unique = <span class="fn">list</span>(<span class="fn">set</span>(names))
+<span class="fn">print</span>(<span class="st">"Unique names:"</span>, unique)</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Union: {1,2,3,4,5,6,7}  Intersection: {3,4,5}
+Difference: {1,2}  Sym.Diff: {1,2,6,7}
+Count 90: 2  Index 78: 2
+Unique names: ['priya', 'gopal', 'ram']</pre></div>
+  </div>
+
+  <!-- CH8 -->
+  <div class="ch-panel" id="c8">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 8</div><h2>Functions, *Args, **Kwargs &amp; Lambda</h2><p>4 types of functions, variable arguments, lambda functions, and decorators.</p></div>
+    <div class="theory-block reveal">
+      <h3>⚙️ 4 Types of Functions</h3>
+      <p>A function is a reusable block of code. Write once, use many times.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Type</th><th>Parameter</th><th>Return</th><th>Example Use</th></tr>
+        <tr><td>Type 1</td><td>With parameter</td><td>With return</td><td>add(a,b) → returns the sum</td></tr>
+        <tr><td>Type 2</td><td>With parameter</td><td>No return</td><td>print_info(name) → just prints</td></tr>
+        <tr><td>Type 3</td><td>No parameter</td><td>With return</td><td>get_greeting() → returns a string</td></tr>
+        <tr><td>Type 4</td><td>No parameter</td><td>No return</td><td>show_menu() → just displays menu</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q12. All 4 Function Types</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="kw">def</span> <span class="fn">ram</span>():             <span class="cm"># Type 4</span>
+    <span class="fn">print</span>(<span class="st">"No parameter, no return"</span>)
+
+<span class="kw">def</span> <span class="fn">ram1</span>(num):          <span class="cm"># Type 1</span>
+    <span class="fn">print</span>(<span class="st">"With parameter:"</span>, num)
+    <span class="kw">return</span> num * <span class="nu">2</span>
+    <span class="fn">print</span>(<span class="st">"This line NEVER runs after return!"</span>)
+
+<span class="kw">def</span> <span class="fn">ram2</span>():             <span class="cm"># Type 3</span>
+    <span class="kw">return</span> <span class="st">"Hello from ram2"</span>
+
+<span class="kw">def</span> <span class="fn">ram3</span>(num):          <span class="cm"># Type 2</span>
+    <span class="fn">print</span>(<span class="st">"With parameter, no return:"</span>, num)
+
+<span class="fn">ram</span>()
+result = <span class="fn">ram1</span>(<span class="nu">10</span>)
+<span class="fn">print</span>(<span class="st">"Return value:"</span>, result)    <span class="cm"># 20</span>
+
+<span class="cm"># PRACTICAL FUNCTIONS</span>
+<span class="kw">def</span> <span class="fn">calculator</span>(a, b, op):
+    <span class="kw">if</span>   op == <span class="st">"+"</span>: <span class="kw">return</span> a + b
+    <span class="kw">elif</span> op == <span class="st">"-"</span>: <span class="kw">return</span> a - b
+    <span class="kw">elif</span> op == <span class="st">"*"</span>: <span class="kw">return</span> a * b
+    <span class="kw">elif</span> op == <span class="st">"/"</span>: <span class="kw">return</span> a / b <span class="kw">if</span> b != <span class="nu">0</span> <span class="kw">else</span> <span class="st">"Error: Divide by zero"</span>
+    <span class="kw">else</span>: <span class="kw">return</span> <span class="st">"Invalid operator"</span>
+
+<span class="fn">print</span>(<span class="fn">calculator</span>(<span class="nu">10</span>, <span class="nu">5</span>, <span class="st">"+"</span>))   <span class="cm"># 15</span>
+<span class="fn">print</span>(<span class="fn">calculator</span>(<span class="nu">10</span>, <span class="nu">5</span>, <span class="st">"*"</span>))   <span class="cm"># 50</span>
+
+<span class="kw">def</span> <span class="fn">factorial</span>(n):
+    result = <span class="nu">1</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">2</span>, n+<span class="nu">1</span>): result *= i
+    <span class="kw">return</span> result
+<span class="fn">print</span>(<span class="st">"5! ="</span>, <span class="fn">factorial</span>(<span class="nu">5</span>))   <span class="cm"># 120</span>
+
+<span class="kw">def</span> <span class="fn">print_report</span>(name, marks_list):
+    avg = <span class="fn">sum</span>(marks_list) / <span class="fn">len</span>(marks_list)
+    <span class="fn">print</span>(<span class="st">f"Student: {name}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Average: {avg:.2f}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Grade  : {'A' if avg>=80 else 'B' if avg>=70 else 'C'}"</span>)
+
+<span class="fn">print_report</span>(<span class="st">"Ram"</span>, [<span class="nu">85</span>, <span class="nu">90</span>, <span class="nu">88</span>, <span class="nu">92</span>, <span class="nu">87</span>])</code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q13. *args and **kwargs</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># *ARGS — unknown number of positional args → stored as TUPLE</span>
+<span class="kw">def</span> <span class="fn">add</span>(*num):
+    <span class="fn">print</span>(<span class="st">"Sum is:"</span>, <span class="fn">sum</span>(num))
+
+<span class="fn">add</span>(<span class="nu">10</span>, <span class="nu">20</span>)                   <span class="cm"># Sum is: 30</span>
+<span class="fn">add</span>(<span class="nu">10</span>, <span class="nu">20</span>, <span class="nu">30</span>, <span class="nu">40</span>)           <span class="cm"># Sum is: 100</span>
+<span class="fn">add</span>(<span class="nu">10</span>, <span class="nu">20</span>, <span class="nu">30</span>, <span class="nu">40</span>, <span class="nu">30</span>, <span class="nu">50</span>, <span class="nu">32</span>) <span class="cm"># Sum is: 212</span>
+
+<span class="kw">def</span> <span class="fn">items</span>(name, *item):
+    <span class="fn">print</span>(<span class="st">"Name:"</span>, name)
+    <span class="kw">for</span> i <span class="kw">in</span> item: <span class="fn">print</span>(<span class="st">"  -"</span>, i)
+
+<span class="fn">items</span>(<span class="st">"Ram"</span>, <span class="st">"Laptop"</span>, <span class="st">"Phone"</span>)
+<span class="fn">items</span>(<span class="st">"Gopal"</span>, <span class="st">"Laptop"</span>, <span class="st">"Phone"</span>, <span class="st">"TV"</span>, <span class="st">"Tablet"</span>)
+
+<span class="cm"># **KWARGS — unknown keyword args → stored as DICTIONARY</span>
+<span class="kw">def</span> <span class="fn">details</span>(**product):
+    <span class="kw">for</span> key, val <span class="kw">in</span> product.<span class="fn">items</span>():
+        <span class="fn">print</span>(<span class="st">f"{key}: {val}"</span>)
+
+<span class="fn">details</span>(tv=[<span class="st">"LG"</span>, <span class="st">"Samsung"</span>], laptop=[<span class="st">"HP"</span>, <span class="st">"LENOVO"</span>])
+
+<span class="cm"># ALL THREE COMBINED — name + *args + **kwargs</span>
+<span class="kw">def</span> <span class="fn">shop_system</span>(shop_name, *employees, **items):
+    <span class="fn">print</span>(<span class="st">f"\nShop    : {shop_name}"</span>)
+    <span class="fn">print</span>(<span class="st">f"Staff   : {employees}"</span>)
+    <span class="kw">for</span> cat, brands <span class="kw">in</span> items.<span class="fn">items</span>():
+        <span class="fn">print</span>(<span class="st">f"  {cat}: {brands}"</span>)
+
+<span class="fn">shop_system</span>(<span class="st">"Ram Electronics"</span>,
+    <span class="st">"Gopal"</span>, <span class="st">"Shyam"</span>, <span class="st">"Priya"</span>,
+    tv=[<span class="st">"LG"</span>, <span class="st">"Sony"</span>], laptop=[<span class="st">"HP"</span>, <span class="st">"Dell"</span>])</code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q14. Lambda &amp; Decorators</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># LAMBDA — anonymous single-expression function</span>
+add_lambda = <span class="kw">lambda</span> a, b: a + b
+square     = <span class="kw">lambda</span> x: x ** <span class="nu">2</span>
+is_even    = <span class="kw">lambda</span> n: <span class="st">"Even"</span> <span class="kw">if</span> n % <span class="nu">2</span> == <span class="nu">0</span> <span class="kw">else</span> <span class="st">"Odd"</span>
+
+<span class="fn">print</span>(<span class="fn">add_lambda</span>(<span class="nu">10</span>, <span class="nu">20</span>))   <span class="cm"># 30</span>
+<span class="fn">print</span>(<span class="fn">square</span>(<span class="nu">5</span>))              <span class="cm"># 25</span>
+<span class="fn">print</span>(<span class="fn">is_even</span>(<span class="nu">7</span>))             <span class="cm"># Odd</span>
+
+<span class="cm"># Lambda with sorted, map, filter</span>
+names   = [<span class="st">"gopal"</span>, <span class="st">"ram"</span>, <span class="st">"aayushi"</span>, <span class="st">"rohit"</span>]
+by_len  = <span class="fn">sorted</span>(names, key=<span class="kw">lambda</span> x: <span class="fn">len</span>(x))
+nums    = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>, <span class="nu">6</span>]
+doubled = <span class="fn">list</span>(<span class="fn">map</span>(<span class="kw">lambda</span> x: x*<span class="nu">2</span>, nums))
+evens   = <span class="fn">list</span>(<span class="fn">filter</span>(<span class="kw">lambda</span> x: x%<span class="nu">2</span>==<span class="nu">0</span>, nums))
+<span class="fn">print</span>(<span class="st">"Sorted by length:"</span>, by_len)
+<span class="fn">print</span>(<span class="st">"Doubled        :"</span>, doubled)
+<span class="fn">print</span>(<span class="st">"Even numbers   :"</span>, evens)
+
+<span class="cm"># DECORATORS — wrap a function with extra behaviour</span>
+<span class="kw">def</span> <span class="fn">great</span>(func):
+    <span class="kw">def</span> <span class="fn">wrapper</span>():
+        <span class="fn">print</span>(<span class="st">"Good Morning!"</span>)
+        <span class="fn">func</span>()
+        <span class="fn">print</span>(<span class="st">"Thanks for visiting!"</span>)
+    <span class="kw">return</span> wrapper
+
+<span class="op">@</span>great                   <span class="cm"># @decorator_name</span>
+<span class="kw">def</span> <span class="fn">ram</span>():
+    <span class="fn">print</span>(<span class="st">"Hello, this is Ram Sir"</span>)
+
+<span class="fn">ram</span>()   <span class="cm"># automatically wrapped with great()</span></code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>5! = 120   Student: Ram   Average: 88.40   Grade: A
+Sum is: 30 / 100 / 212
+Shop: Ram Electronics   Staff: ('Gopal','Shyam','Priya')
+Doubled: [2,4,6,8,10,12]   Even: [2,4,6]
+Good Morning!
+Hello, this is Ram Sir
+Thanks for visiting!</pre></div>
+  </div>
+
+  <!-- CH9 -->
+  <div class="ch-panel" id="c9">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 9</div><h2>Arrays — 1D &amp; 2D</h2><p>Static and dynamic arrays, matrix operations, 2D sum/average, and transpose.</p></div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q15. 1D Arrays (Static &amp; Dynamic)</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># STATIC 1D ARRAY</span>
+student_names   = [<span class="st">"Ram"</span>, <span class="st">"Sita"</span>, <span class="st">"Geeta"</span>]
+student_details = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>]
+<span class="fn">print</span>(<span class="st">"Static names:"</span>, student_names)
+<span class="fn">print</span>(<span class="nu">4</span> <span class="kw">in</span> student_details)   <span class="cm"># True</span>
+<span class="fn">print</span>(<span class="fn">len</span>(student_details))   <span class="cm"># 5</span>
+
+<span class="cm"># DYNAMIC 1D ARRAY</span>
+arr  = []
+size = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter array size: "</span>))
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(size):
+    val = <span class="fn">input</span>(<span class="st">f"Enter value {i+1}: "</span>)
+    arr.<span class="fn">append</span>(val)
+<span class="fn">print</span>(<span class="st">"Final array:"</span>, arr)
+
+<span class="cm"># Array operations</span>
+marks = [<span class="nu">85</span>, <span class="nu">90</span>, <span class="nu">78</span>, <span class="nu">92</span>, <span class="nu">88</span>]
+<span class="fn">print</span>(<span class="st">"Sum    :"</span>, <span class="fn">sum</span>(marks))                     <span class="cm"># 433</span>
+<span class="fn">print</span>(<span class="st">"Average:"</span>, <span class="fn">sum</span>(marks) / <span class="fn">len</span>(marks))         <span class="cm"># 86.6</span>
+<span class="fn">print</span>(<span class="st">"Min    :"</span>, <span class="fn">min</span>(marks))                     <span class="cm"># 78</span>
+<span class="fn">print</span>(<span class="st">"Max    :"</span>, <span class="fn">max</span>(marks))                     <span class="cm"># 92</span></code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q16. 2D Arrays / Matrix</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># STATIC 2D ARRAY — rows=students, cols=subjects</span>
+marks_static = [
+    [<span class="nu">85</span>, <span class="nu">90</span>, <span class="nu">95</span>],   <span class="cm"># Student 1: Math, Science, English</span>
+    [<span class="nu">80</span>, <span class="nu">70</span>, <span class="nu">75</span>],   <span class="cm"># Student 2</span>
+    [<span class="nu">88</span>, <span class="nu">77</span>, <span class="nu">66</span>]    <span class="cm"># Student 3</span>
+]
+<span class="kw">for</span> i, row <span class="kw">in</span> <span class="fn">enumerate</span>(marks_static):
+    <span class="fn">print</span>(<span class="st">f"Student {i}: {row}"</span>)
+<span class="cm"># Access specific element: Student 0, Subject 2</span>
+<span class="fn">print</span>(<span class="st">"marks[0][2] ="</span>, marks_static[<span class="nu">0</span>][<span class="nu">2</span>])   <span class="cm"># 95</span>
+
+<span class="cm"># DYNAMIC 2D ARRAY</span>
+matrix = []
+rows   = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter number of rows: "</span>))
+cols   = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter number of columns: "</span>))
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(rows):
+    <span class="fn">print</span>(<span class="st">f"Enter values for row {i+1}:"</span>)
+    row = []
+    <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(cols):
+        val = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">f"  [{i}][{j}]: "</span>))
+        row.<span class="fn">append</span>(val)
+    matrix.<span class="fn">append</span>(row)
+
+<span class="cm"># SUM and AVERAGE of all elements</span>
+total = <span class="fn">sum</span>([val <span class="kw">for</span> row <span class="kw">in</span> matrix <span class="kw">for</span> val <span class="kw">in</span> row])
+<span class="fn">print</span>(<span class="st">"Total Sum :"</span>, total)
+<span class="fn">print</span>(<span class="st">"Average   :"</span>, total / (rows * cols))
+
+<span class="cm"># Student averages per row</span>
+<span class="kw">def</span> <span class="fn">row_avg</span>(row): <span class="kw">return</span> <span class="fn">round</span>(<span class="fn">sum</span>(row)/<span class="fn">len</span>(row), <span class="nu">2</span>)
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(matrix)):
+    <span class="fn">print</span>(<span class="st">f"Student {i+1}: {matrix[i]} → Avg: {row_avg(matrix[i])}"</span>)
+
+<span class="cm"># TRANSPOSE — rows become columns</span>
+T = [[matrix[j][i] <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(matrix))] <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(matrix[<span class="nu">0</span>]))]
+<span class="fn">print</span>(<span class="st">"Transposed matrix:"</span>, T)</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Student 0: [85, 90, 95]   Student 1: [80, 70, 75]
+marks[0][2] = 95
+Sum: 22   Average: 5.5  (for a 2×2 matrix)</pre></div>
+  </div>
+
+  <!-- CH10 -->
+  <div class="ch-panel" id="c10">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 10</div><h2>Modules &amp; Libraries</h2><p>math, random, time, threading modules, and how to create your own custom module.</p></div>
+    <div class="theory-block reveal">
+      <h3>📦 What is a Module?</h3>
+      <p>A module is a file containing Python code (functions, variables, classes) that can be imported into other programs. It promotes code reusability.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Type</th><th>Description</th><th>Examples</th></tr>
+        <tr><td>Core Modules</td><td>Built into Python, no installation needed</td><td>math, random, time, os, sys</td></tr>
+        <tr><td>User-Defined</td><td>.py files you create yourself</td><td>first.py, calculator.py</td></tr>
+        <tr><td>Third-party</td><td>Install via pip</td><td>numpy, pandas, flask</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q17. Math Module — All Functions</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="kw">import</span> math <span class="kw">as</span> m
+
+<span class="cm"># sqrt — Square root</span>
+<span class="fn">print</span>(<span class="st">f"sqrt(64) = {m.sqrt(64)}"</span>)     <span class="cm"># 8.0</span>
+<span class="fn">print</span>(<span class="st">f"sqrt(25) = {m.sqrt(25)}"</span>)     <span class="cm"># 5.0</span>
+<span class="fn">print</span>(<span class="st">f"sqrt(30) = {m.sqrt(30)}"</span>)     <span class="cm"># 5.477...</span>
+
+<span class="cm"># ceil — Round UP to nearest integer</span>
+<span class="fn">print</span>(<span class="st">f"ceil(10.35)  = {m.ceil(10.35)}"</span>)    <span class="cm"># 11</span>
+<span class="fn">print</span>(<span class="st">f"ceil(-10.35) = {m.ceil(-10.35)}"</span>)   <span class="cm"># -10</span>
+
+<span class="cm"># floor — Round DOWN</span>
+<span class="fn">print</span>(<span class="st">f"floor(10.35)  = {m.floor(10.35)}"</span>)   <span class="cm"># 10</span>
+<span class="fn">print</span>(<span class="st">f"floor(-10.35) = {m.floor(-10.35)}"</span>)  <span class="cm"># -11</span>
+
+<span class="cm"># pow — Raise to power</span>
+<span class="fn">print</span>(<span class="st">f"pow(2,3) = {m.pow(2,3)}"</span>)     <span class="cm"># 8.0</span>
+<span class="fn">print</span>(<span class="st">f"pow(5,3) = {m.pow(5,3)}"</span>)     <span class="cm"># 125.0</span>
+
+<span class="cm"># fabs — Absolute value (float)</span>
+<span class="fn">print</span>(<span class="st">f"fabs(-10.67) = {m.fabs(-10.67)}"</span>)    <span class="cm"># 10.67</span>
+
+<span class="cm"># factorial</span>
+<span class="fn">print</span>(<span class="st">f"factorial(5)  = {m.factorial(5)}"</span>)    <span class="cm"># 120</span>
+<span class="fn">print</span>(<span class="st">f"factorial(10) = {m.factorial(10)}"</span>)   <span class="cm"># 3628800</span>
+
+<span class="cm"># Trigonometry</span>
+<span class="fn">print</span>(<span class="st">f"sin(90°) = {m.sin(m.radians(90))}"</span>)   <span class="cm"># 1.0</span>
+<span class="fn">print</span>(<span class="st">f"sin(30°) = {m.sin(m.radians(30))}"</span>)   <span class="cm"># 0.5</span>
+<span class="fn">print</span>(<span class="st">f"cos(60°) = {m.cos(m.radians(60))}"</span>)   <span class="cm"># 0.5</span>
+
+<span class="cm"># Logarithm</span>
+<span class="fn">print</span>(<span class="st">f"log(2)    = {m.log(2):.4f}"</span>)      <span class="cm"># 0.6931</span>
+<span class="fn">print</span>(<span class="st">f"log10(100)= {m.log10(100)}"</span>)      <span class="cm"># 2.0</span>
+
+<span class="cm"># Mathematical constants</span>
+<span class="fn">print</span>(<span class="st">f"pi = {m.pi}"</span>)    <span class="cm"># 3.14159...</span>
+<span class="fn">print</span>(<span class="st">f"e  = {m.e}"</span>)     <span class="cm"># 2.71828...</span></code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q18. Random &amp; Threading Modules</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="kw">import</span> random <span class="kw">as</span> r
+
+<span class="fn">print</span>(r.<span class="fn">random</span>())              <span class="cm"># random float: 0.0 to 1.0</span>
+<span class="fn">print</span>(r.<span class="fn">randrange</span>(<span class="nu">20</span>, <span class="nu">30</span>))    <span class="cm"># random int: 20 to 29</span>
+<span class="fn">print</span>(r.<span class="fn">randint</span>(<span class="nu">1</span>, <span class="nu">6</span>))        <span class="cm"># Ludo dice: 1 to 6 inclusive</span>
+
+names = [<span class="st">"ram"</span>, <span class="st">"ayush"</span>, <span class="st">"shyam"</span>, <span class="st">"rohit"</span>]
+<span class="fn">print</span>(<span class="st">"Random choice:"</span>, r.<span class="fn">choice</span>(names))
+
+<span class="cm"># Rock Paper Scissors game</span>
+choices  = [<span class="st">"rock"</span>, <span class="st">"paper"</span>, <span class="st">"scissors"</span>]
+computer = r.<span class="fn">choice</span>(choices)
+player   = <span class="fn">input</span>(<span class="st">"Enter rock/paper/scissors: "</span>).<span class="fn">lower</span>()
+<span class="fn">print</span>(<span class="st">f"Computer: {computer}  You: {player}"</span>)
+<span class="kw">if</span>   player == computer: <span class="fn">print</span>(<span class="st">"It's a Draw!"</span>)
+<span class="kw">elif</span> (player==<span class="st">"rock"</span> <span class="kw">and</span> computer==<span class="st">"scissors"</span>) <span class="kw">or</span> \
+     (player==<span class="st">"paper"</span> <span class="kw">and</span> computer==<span class="st">"rock"</span>) <span class="kw">or</span> \
+     (player==<span class="st">"scissors"</span> <span class="kw">and</span> computer==<span class="st">"paper"</span>):
+    <span class="fn">print</span>(<span class="st">"You WIN! 🎉"</span>)
+<span class="kw">else</span>: <span class="fn">print</span>(<span class="st">"Computer wins!"</span>)
+
+<span class="cm"># ===== THREADING — run tasks simultaneously =====</span>
+<span class="kw">import</span> threading <span class="kw">as</span> th
+<span class="kw">import</span> time <span class="kw">as</span> t
+
+<span class="kw">def</span> <span class="fn">waterboil</span>():
+    <span class="fn">print</span>(<span class="st">"Start boiling water..."</span>)
+    t.<span class="fn">sleep</span>(<span class="nu">10</span>)
+    <span class="fn">print</span>(<span class="st">"Coffee is ready!"</span>)
+
+<span class="kw">def</span> <span class="fn">make_toast</span>():
+    <span class="fn">print</span>(<span class="st">"Toasting bread..."</span>)
+    t.<span class="fn">sleep</span>(<span class="nu">5</span>)
+    <span class="fn">print</span>(<span class="st">"Toast is ready!"</span>)
+
+task1 = th.<span class="fn">Thread</span>(target=waterboil)
+task2 = th.<span class="fn">Thread</span>(target=make_toast)
+task1.<span class="fn">start</span>()   <span class="cm"># Both run simultaneously!</span>
+task2.<span class="fn">start</span>()
+task1.<span class="fn">join</span>()
+task2.<span class="fn">join</span>()
+<span class="fn">print</span>(<span class="st">"Breakfast is ready! 🍳"</span>)</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>sqrt(64)=8.0  ceil(10.35)=11  floor(-10.35)=-11
+factorial(5)=120   factorial(10)=3628800
+sin(90°)=1.0   cos(60°)=0.5   pi=3.14159...
+Start boiling water...
+Toasting bread...         ← both start simultaneously!
+Toast is ready!           (after 5s)
+Coffee is ready!          (after 10s)
+Breakfast is ready! 🍳</pre></div>
+  </div>
+
+  <!-- CH11 -->
+  <div class="ch-panel" id="c11">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 11</div><h2>Object Oriented Programming (OOP)</h2><p>Class, Object, Constructor, Destructor, Inheritance, Polymorphism — complete OOP guide.</p></div>
+    <div class="theory-block reveal">
+      <h3>🏛️ OOP Concepts at a Glance</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Concept</th><th>Definition</th><th>Real-Life Analogy</th></tr>
+        <tr><td>Class</td><td>Blueprint/template for creating objects</td><td>House blueprint/design</td></tr>
+        <tr><td>Object</td><td>An instance created from a class</td><td>An actual house built from the design</td></tr>
+        <tr><td>Constructor __init__</td><td>Auto-called when object is created</td><td>Inauguration of the house</td></tr>
+        <tr><td>Destructor __del__</td><td>Auto-called when object is deleted</td><td>Demolition of the house</td></tr>
+        <tr><td>Inheritance</td><td>Child class gets parent's properties</td><td>Son inherits father's traits</td></tr>
+        <tr><td>Polymorphism</td><td>Same function name, different behavior</td><td>Same button on TV and AC does different things</td></tr>
+        <tr><td>Encapsulation</td><td>Hide data, expose only what's needed</td><td>Capsule hides medicine inside</td></tr>
+        <tr><td>Abstraction</td><td>Show only essential features</td><td>Car dashboard shows speed, hides engine</td></tr>
+      </table></div>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q20. Class &amp; Objects</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="kw">class</span> <span class="fn">Student</span>:
+    school = <span class="st">"Ram Sir Academy"</span>   <span class="cm"># class variable (shared by all)</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name, roll, marks_list):
+        self.name  = name           <span class="cm"># instance variable (unique per object)</span>
+        self.roll  = roll
+        self.marks = marks_list
+
+    <span class="kw">def</span> <span class="fn">average</span>(self):
+        <span class="kw">return</span> <span class="fn">sum</span>(self.marks) / <span class="fn">len</span>(self.marks)
+
+    <span class="kw">def</span> <span class="fn">grade</span>(self):
+        avg = self.<span class="fn">average</span>()
+        <span class="kw">if</span>   avg >= <span class="nu">90</span>: <span class="kw">return</span> <span class="st">"A+"</span>
+        <span class="kw">elif</span> avg >= <span class="nu">80</span>: <span class="kw">return</span> <span class="st">"A"</span>
+        <span class="kw">elif</span> avg >= <span class="nu">70</span>: <span class="kw">return</span> <span class="st">"B"</span>
+        <span class="kw">else</span>: <span class="kw">return</span> <span class="st">"C"</span>
+
+    <span class="kw">def</span> <span class="fn">display</span>(self):
+        <span class="fn">print</span>(<span class="st">f"School : {Student.school}"</span>)
+        <span class="fn">print</span>(<span class="st">f"Name   : {self.name} | Roll: {self.roll}"</span>)
+        <span class="fn">print</span>(<span class="st">f"Marks  : {self.marks}"</span>)
+        <span class="fn">print</span>(<span class="st">f"Average: {self.average():.2f} | Grade: {self.grade()}"</span>)
+
+<span class="cm"># Create multiple objects from ONE class (like cookies from one cutter)</span>
+s1 = <span class="fn">Student</span>(<span class="st">"Ram"</span>,   <span class="nu">1</span>, [<span class="nu">85</span>, <span class="nu">90</span>, <span class="nu">88</span>, <span class="nu">92</span>, <span class="nu">87</span>])
+s2 = <span class="fn">Student</span>(<span class="st">"Gopal"</span>, <span class="nu">2</span>, [<span class="nu">70</span>, <span class="nu">75</span>, <span class="nu">72</span>, <span class="nu">68</span>, <span class="nu">80</span>])
+s3 = <span class="fn">Student</span>(<span class="st">"Priya"</span>, <span class="nu">3</span>, [<span class="nu">95</span>, <span class="nu">98</span>, <span class="nu">92</span>, <span class="nu">96</span>, <span class="nu">94</span>])
+s1.<span class="fn">display</span>()
+<span class="fn">print</span>()
+s2.<span class="fn">display</span>()</code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q21. Constructor &amp; Destructor</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="kw">class</span> <span class="fn">BankAccount</span>:
+    bank_name = <span class="st">"Ram Sir Bank"</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, holder, acc_no, balance=<span class="nu">0</span>):   <span class="cm"># Constructor</span>
+        self.holder  = holder
+        self.acc_no  = acc_no
+        self.balance = balance
+        <span class="fn">print</span>(<span class="st">f"✅ Account created for {holder}"</span>)
+
+    <span class="kw">def</span> <span class="fn">deposit</span>(self, amount):
+        self.balance += amount
+        <span class="fn">print</span>(<span class="st">f"Deposited ₹{amount}. Balance: ₹{self.balance}"</span>)
+
+    <span class="kw">def</span> <span class="fn">withdraw</span>(self, amount):
+        <span class="kw">if</span> amount > self.balance:
+            <span class="fn">print</span>(<span class="st">"❌ Insufficient balance!"</span>)
+        <span class="kw">else</span>:
+            self.balance -= amount
+            <span class="fn">print</span>(<span class="st">f"Withdrawn ₹{amount}. Balance: ₹{self.balance}"</span>)
+
+    <span class="kw">def</span> <span class="fn">statement</span>(self):
+        <span class="fn">print</span>(<span class="st">f"Account: {self.acc_no} | Holder: {self.holder} | Balance: ₹{self.balance}"</span>)
+
+    <span class="kw">def</span> <span class="fn">__del__</span>(self):   <span class="cm"># Destructor</span>
+        <span class="fn">print</span>(<span class="st">f"🔒 Account {self.acc_no} session closed."</span>)
+
+acc1 = <span class="fn">BankAccount</span>(<span class="st">"Ram Sir"</span>, <span class="st">"ACC001"</span>, <span class="nu">10000</span>)
+acc1.<span class="fn">deposit</span>(<span class="nu">2000</span>)
+acc1.<span class="fn">withdraw</span>(<span class="nu">500</span>)
+acc1.<span class="fn">withdraw</span>(<span class="nu">20000</span>)   <span class="cm"># Insufficient!</span>
+acc1.<span class="fn">statement</span>()</code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q22 &amp; Q23. Inheritance &amp; Polymorphism</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># SINGLE INHERITANCE</span>
+<span class="kw">class</span> <span class="fn">Parent</span>:
+    name = <span class="st">"Ram Sir"</span>
+    <span class="kw">def</span> <span class="fn">info</span>(self): <span class="fn">print</span>(<span class="st">"Parent class — Name:"</span>, self.name)
+
+<span class="kw">class</span> <span class="fn">Child</span>(Parent):   <span class="cm"># Child inherits from Parent</span>
+    roll = <span class="nu">45</span>
+    <span class="kw">def</span> <span class="fn">details</span>(self):
+        self.<span class="fn">info</span>()           <span class="cm"># calling parent method</span>
+        <span class="fn">print</span>(<span class="st">"Child class — Roll:"</span>, self.roll)
+
+<span class="fn">Child</span>().<span class="fn">details</span>()
+
+<span class="cm"># MULTIPLE INHERITANCE</span>
+<span class="kw">class</span> <span class="fn">Parent2</span>:
+    marks = <span class="nu">98</span>
+    <span class="kw">def</span> <span class="fn">show_marks</span>(self): <span class="fn">print</span>(<span class="st">"Parent2 marks:"</span>, self.marks)
+
+<span class="kw">class</span> <span class="fn">MultiChild</span>(Parent, Parent2):   <span class="cm"># inherits from BOTH</span>
+    <span class="kw">def</span> <span class="fn">all_info</span>(self):
+        self.<span class="fn">info</span>()
+        self.<span class="fn">show_marks</span>()
+
+<span class="fn">MultiChild</span>().<span class="fn">all_info</span>()
+
+<span class="cm"># POLYMORPHISM — same method name, different behavior</span>
+<span class="kw">class</span> <span class="fn">Animal</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name): self.name = name
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="fn">print</span>(<span class="st">f"{self.name} makes a sound"</span>)
+
+<span class="kw">class</span> <span class="fn">Dog</span>(Animal):
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="fn">print</span>(<span class="st">f"{self.name} says: Woof! 🐶"</span>)
+
+<span class="kw">class</span> <span class="fn">Cat</span>(Animal):
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="fn">print</span>(<span class="st">f"{self.name} says: Meow! 🐱"</span>)
+
+<span class="kw">class</span> <span class="fn">Cow</span>(Animal):
+    <span class="kw">def</span> <span class="fn">speak</span>(self): <span class="fn">print</span>(<span class="st">f"{self.name} says: Moo! 🐄"</span>)
+
+<span class="cm"># Polymorphism in action — same method call, different output!</span>
+animals = [<span class="fn">Dog</span>(<span class="st">"Buddy"</span>), <span class="fn">Cat</span>(<span class="st">"Whiskers"</span>), <span class="fn">Cow</span>(<span class="st">"Ganga"</span>)]
+<span class="kw">for</span> animal <span class="kw">in</span> animals:
+    animal.<span class="fn">speak</span>()
+
+<span class="cm"># super() — access parent method from child</span>
+<span class="kw">class</span> <span class="fn">Branch</span>:
+    <span class="kw">def</span> <span class="fn">info</span>(self): <span class="fn">print</span>(<span class="st">"Branch: Ram Sir Academy"</span>)
+
+<span class="kw">class</span> <span class="fn">MainBranch</span>(Branch):
+    <span class="kw">def</span> <span class="fn">info</span>(self):
+        <span class="fn">super</span>().<span class="fn">info</span>()   <span class="cm"># calls parent's info()</span>
+        <span class="fn">print</span>(<span class="st">"Main Branch: Indore HQ"</span>)
+
+<span class="fn">MainBranch</span>().<span class="fn">info</span>()</code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>School: Ram Sir Academy  Name: Ram  Average: 88.40  Grade: A
+✅ Account created for Ram Sir
+Deposited ₹2000. Balance: ₹12000
+Withdrawn ₹500.  Balance: ₹11500
+❌ Insufficient balance!
+Buddy says: Woof! 🐶   Whiskers says: Meow! 🐱   Ganga says: Moo! 🐄</pre></div>
+  </div>
+
+  <!-- CH12 -->
+  <div class="ch-panel" id="c12">
+    <div class="ch-header reveal"><div class="ch-num">Chapter 12</div><h2>File Handling, SQLite3 &amp; Exception Handling</h2><p>Read/write files, SQLite database CRUD, exception handling, and shallow vs deep copy.</p></div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q24. File Handling</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># CREATE a new file</span>
+f = <span class="fn">open</span>(<span class="st">"ram.txt"</span>, <span class="st">"x"</span>)   <span class="cm"># 'x' = create (error if file exists)</span>
+<span class="fn">print</span>(<span class="st">"File created!"</span>)
+f.<span class="fn">close</span>()
+
+<span class="cm"># WRITE mode — overwrites existing content</span>
+f = <span class="fn">open</span>(<span class="st">"ram.txt"</span>, <span class="st">"w"</span>)
+f.<span class="fn">write</span>(<span class="st">"Line 1: Hello from Ram Sir\n"</span>)
+f.<span class="fn">write</span>(<span class="st">"Line 2: Python is awesome!\n"</span>)
+f.<span class="fn">write</span>(<span class="st">"Line 3: Keep coding!\n"</span>)
+f.<span class="fn">close</span>()
+
+<span class="cm"># READ mode — 3 methods</span>
+f = <span class="fn">open</span>(<span class="st">"ram.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(f.<span class="fn">read</span>(<span class="nu">100</span>))     <span class="cm"># read first 100 characters</span>
+f.<span class="fn">close</span>()
+
+f = <span class="fn">open</span>(<span class="st">"ram.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(f.<span class="fn">readline</span>())    <span class="cm"># read only the first line</span>
+f.<span class="fn">close</span>()
+
+f = <span class="fn">open</span>(<span class="st">"ram.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(f.<span class="fn">readlines</span>())   <span class="cm"># all lines as a list</span>
+f.<span class="fn">close</span>()
+
+<span class="cm"># APPEND mode — adds content without deleting old data</span>
+f = <span class="fn">open</span>(<span class="st">"ram.txt"</span>, <span class="st">"a"</span>)
+f.<span class="fn">write</span>(<span class="st">"Line 4: New line appended!\n"</span>)
+f.<span class="fn">close</span>()
+
+<span class="cm"># BEST PRACTICE — use 'with' statement (auto-closes file)</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"ram.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    content = f.<span class="fn">read</span>()
+    <span class="fn">print</span>(content)
+<span class="cm"># File is automatically closed after the 'with' block!</span></code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q25. SQLite3 Database — Full CRUD System</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="kw">import</span> sqlite3
+
+<span class="cm"># Connect (creates file if it doesn't exist)</span>
+con    = sqlite3.<span class="fn">connect</span>(<span class="st">"my_database.db"</span>)
+cursor = con.<span class="fn">cursor</span>()
+
+<span class="cm"># CREATE TABLE</span>
+cursor.<span class="fn">execute</span>(<span class="st">'''
+    CREATE TABLE IF NOT EXISTS student(
+        id   INTEGER,
+        name TEXT,
+        age  INTEGER
+    )
+'''</span>)
+con.<span class="fn">commit</span>()
+<span class="fn">print</span>(<span class="st">"Table created!"</span>)
+
+<span class="cm"># CRUD FUNCTIONS</span>
+<span class="kw">def</span> <span class="fn">insert_student</span>():
+    idd  = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Student ID  : "</span>))
+    name = <span class="fn">input</span>(<span class="st">"Student Name: "</span>)
+    age  = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Student Age : "</span>))
+    cursor.<span class="fn">execute</span>(<span class="st">"INSERT INTO student VALUES(?,?,?)"</span>, (idd, name, age))
+    con.<span class="fn">commit</span>()
+    <span class="fn">print</span>(<span class="st">"✅ Record Inserted!"</span>)
+
+<span class="kw">def</span> <span class="fn">show_all</span>():
+    cursor.<span class="fn">execute</span>(<span class="st">"SELECT * FROM student"</span>)
+    rows = cursor.<span class="fn">fetchall</span>()
+    <span class="fn">print</span>(<span class="st">"\n--- Student Records ---"</span>)
+    <span class="kw">for</span> row <span class="kw">in</span> rows:
+        <span class="fn">print</span>(<span class="st">f"ID:{row[0]}  Name:{row[1]}  Age:{row[2]}"</span>)
+
+<span class="kw">def</span> <span class="fn">update_student</span>():
+    idd  = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"ID to update: "</span>))
+    name = <span class="fn">input</span>(<span class="st">"New name    : "</span>)
+    age  = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"New age     : "</span>))
+    cursor.<span class="fn">execute</span>(<span class="st">"UPDATE student SET name=?,age=? WHERE id=?"</span>, (name, age, idd))
+    con.<span class="fn">commit</span>()
+    <span class="fn">print</span>(<span class="st">"✅ Record Updated!"</span>)
+
+<span class="kw">def</span> <span class="fn">delete_student</span>():
+    idd = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"ID to delete: "</span>))
+    cursor.<span class="fn">execute</span>(<span class="st">"DELETE FROM student WHERE id=?"</span>, (idd,))
+    con.<span class="fn">commit</span>()
+    <span class="fn">print</span>(<span class="st">"✅ Record Deleted!"</span>)
+
+<span class="cm"># MAIN MENU</span>
+<span class="kw">while</span> <span class="kw">True</span>:
+    <span class="fn">print</span>(<span class="st">"\n=== Student Database Menu ==="</span>)
+    <span class="fn">print</span>(<span class="st">"1.Insert  2.View All  3.Update  4.Delete  5.Exit"</span>)
+    choice = <span class="fn">input</span>(<span class="st">"Enter choice (1-5): "</span>)
+    <span class="kw">if</span>   choice==<span class="st">'1'</span>: <span class="fn">insert_student</span>()
+    <span class="kw">elif</span> choice==<span class="st">'2'</span>: <span class="fn">show_all</span>()
+    <span class="kw">elif</span> choice==<span class="st">'3'</span>: <span class="fn">update_student</span>()
+    <span class="kw">elif</span> choice==<span class="st">'4'</span>: <span class="fn">delete_student</span>()
+    <span class="kw">elif</span> choice==<span class="st">'5'</span>: <span class="fn">print</span>(<span class="st">"Goodbye!"</span>); <span class="kw">break</span>
+    <span class="kw">else</span>: <span class="fn">print</span>(<span class="st">"Invalid choice!"</span>)
+con.<span class="fn">close</span>()</code></pre>
+    </div>
+    <div class="code-block reveal">
+      <div class="cb-header"><span class="cb-lang">PYTHON – Q26 &amp; Q27. Exception Handling + Shallow/Deep Copy</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="cm"># TRY-EXCEPT-FINALLY</span>
+<span class="kw">try</span>:
+    num    = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter a number: "</span>))
+    result = <span class="nu">100</span> / num
+    <span class="fn">print</span>(<span class="st">"Result:"</span>, result)
+<span class="kw">except</span> ZeroDivisionError:
+    <span class="fn">print</span>(<span class="st">"Error: Cannot divide by zero!"</span>)
+<span class="kw">except</span> ValueError:
+    <span class="fn">print</span>(<span class="st">"Error: Please enter a valid number!"</span>)
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="st">"This block ALWAYS runs (cleanup code)."</span>)
+
+<span class="cm"># RAISE CUSTOM EXCEPTION</span>
+<span class="kw">def</span> <span class="fn">validate_age</span>(age):
+    <span class="kw">if</span> age < <span class="nu">0</span>:
+        <span class="kw">raise</span> ValueError(<span class="st">"Age cannot be negative!"</span>)
+    <span class="kw">if</span> age > <span class="nu">150</span>:
+        <span class="kw">raise</span> ValueError(<span class="st">"Age seems unrealistic!"</span>)
+    <span class="kw">return</span> <span class="st">f"Valid age: {age}"</span>
+
+<span class="kw">try</span>:
+    <span class="fn">print</span>(<span class="fn">validate_age</span>(<span class="nu">25</span>))
+    <span class="fn">print</span>(<span class="fn">validate_age</span>(<span class="op">-</span><span class="nu">5</span>))
+<span class="kw">except</span> ValueError <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="st">"Error:"</span>, e)
+
+<span class="cm"># ===== SHALLOW vs DEEP COPY =====</span>
+<span class="kw">import</span> copy
+
+cart = [
+    {<span class="st">"item"</span>: <span class="st">"laptop"</span>, <span class="st">"price"</span>: <span class="nu">60000</span>},
+    {<span class="st">"item"</span>: <span class="st">"mobile"</span>, <span class="st">"price"</span>: <span class="nu">15000</span>}
+]
+
+<span class="cm"># SHALLOW COPY — nested dicts are SHARED!</span>
+shallow_cart = copy.<span class="fn">copy</span>(cart)
+shallow_cart[<span class="nu">0</span>][<span class="st">"price"</span>] = <span class="nu">50000</span>
+<span class="fn">print</span>(<span class="st">"Shallow — original price:"</span>, cart[<span class="nu">0</span>][<span class="st">"price"</span>])
+<span class="cm"># ⚠️ Output: 50000 — ORIGINAL CHANGED! Bad!</span>
+
+<span class="cm"># DEEP COPY — completely independent</span>
+cart2 = [{<span class="st">"item"</span>:<span class="st">"laptop"</span>, <span class="st">"price"</span>:<span class="nu">60000</span>}]
+deep_cart = copy.<span class="fn">deepcopy</span>(cart2)
+deep_cart[<span class="nu">0</span>][<span class="st">"price"</span>] = <span class="nu">50000</span>
+<span class="fn">print</span>(<span class="st">"Deep   — original price:"</span>, cart2[<span class="nu">0</span>][<span class="st">"price"</span>])
+<span class="cm"># ✅ Output: 60000 — ORIGINAL UNCHANGED! Good!</span></code></pre>
+    </div>
+    <div class="output-block reveal"><div class="output-label">⚡ OUTPUT</div><pre>Result: 5.0
+This block ALWAYS runs (cleanup code).
+Valid age: 25   Error: Age cannot be negative!
+Shallow — original price: 50000  ← CHANGED (problem!)
+Deep    — original price: 60000  ← UNCHANGED (correct!)</pre></div>
+  </div>
+</section>
+
+<!-- IMPORTANT QUESTIONS -->
+<section id="questions">
+  <div class="center">
+    <span class="sec-label">Important Questions</span>
+    <h2 class="sec-title">Theory Questions — Full Answers</h2>
+    <p class="sec-sub">Essential for exams and interviews — click any question to expand the answer.</p>
+  </div>
+  <div class="qa-list">
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q28. What is the difference between a List and a Tuple?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-easy">Easy</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong>List:</strong> Mutable (changeable), uses <code>[]</code>, elements can be added/removed/modified, slightly slower.<br><strong>Tuple:</strong> Immutable (unchangeable), uses <code>()</code>, elements cannot be changed after creation, faster than list.<br><br><strong>Rule of thumb:</strong> Use a <strong>list</strong> when data will change (shopping cart). Use a <strong>tuple</strong> when data is fixed (days of the week, coordinates).</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q29. What is the difference between break, continue, and pass?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-easy">Easy</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong>break:</strong> Immediately exits the loop entirely — no more iterations run.<br><strong>continue:</strong> Skips the rest of the current iteration and jumps to the next one.<br><strong>pass:</strong> Does nothing — acts as a placeholder where code is syntactically required but you want nothing to happen.<br><br>Analogy: break = fire exit | continue = skip one chapter | pass = empty placeholder</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q30. What is the difference between 'is' and '==' operators?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-med">Medium</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong><code>==</code></strong> checks <strong>value equality</strong> — do they have the same value?<br><strong><code>is</code></strong> checks <strong>identity</strong> — are they the same object in memory?<br><br>Example: <code>a = [1,2]; b = [1,2]</code><br><code>a == b</code> → <strong>True</strong> (same values)<br><code>a is b</code> → <strong>False</strong> (different objects in memory)<br><br>Always use <code>==</code> to compare string or list values.</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q31. What is the Global Interpreter Lock (GIL) in Python?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-hard">Advanced</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p>GIL is a mutex (lock) that allows only <strong>one thread to execute Python code at a time</strong>, even on multi-core processors.<br><br>This is why Python threading does not truly parallelize CPU-bound tasks. However, for <strong>I/O-bound tasks</strong> (file reading, network calls), threading still helps because the GIL is released during I/O.<br><br>For CPU-bound tasks, use the <strong>multiprocessing</strong> module instead.</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q32. What is the difference between append() and extend() in lists?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-easy">Easy</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong>append(item):</strong> Adds ONE item to the end of the list. If the item is itself a list, it's added as a single nested element.<br><strong>extend(iterable):</strong> Adds ALL elements from an iterable individually to the end.<br><br><code>[1,2,3].append([4,5])</code> → <code>[1,2,3,[4,5]]</code><br><code>[1,2,3].extend([4,5])</code> → <code>[1,2,3,4,5]</code></p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q33. What is the difference between a Module and a Package?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-easy">Easy</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong>Module:</strong> A single <code>.py</code> file containing Python code. Example: <code>math.py</code>, <code>random.py</code><br><strong>Package:</strong> A directory containing multiple modules with an <code>__init__.py</code> file. Example: <code>numpy</code> is a package containing many modules.<br><br>Think of it as: Module = one book, Package = a library shelf of books.</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q34. What is 'self' in Python class methods?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-med">Medium</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><code>self</code> is a reference to the <strong>current instance (object)</strong> of the class. It is the first parameter of every instance method.<br><br>When you call <code>obj.method()</code>, Python automatically passes <code>obj</code> as <code>self</code>. You use <code>self.variable</code> to access instance variables and <code>self.method()</code> to call other methods.<br><br>Without <code>self</code>, all objects would share the same variables — there would be no individual state.</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q35. What is a Virtual Environment in Python and why is it needed?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-med">Medium</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p>A virtual environment is an <strong>isolated Python environment</strong> where each project can have its own packages and versions without affecting the global Python installation.<br><br><strong>Create:</strong> <code>python -m venv myenv</code><br><strong>Activate (Windows):</strong> <code>myenv\Scripts\activate</code><br><strong>Activate (Linux/Mac):</strong> <code>source myenv/bin/activate</code><br><strong>Install packages:</strong> <code>pip install package_name</code></p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q36. What is the difference between Shallow Copy and Deep Copy?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-hard">Advanced</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong>Shallow Copy</strong> (<code>copy.copy()</code>): Creates a new object but fills it with <strong>references to the same nested objects</strong>. Modifying a nested element in the copy also modifies the original — problematic!<br><strong>Deep Copy</strong> (<code>copy.deepcopy()</code>): Creates a <strong>completely independent copy</strong> — all nested objects are also copied. Modifying the deep copy never affects the original.<br><br>Use deep copy whenever you have nested data structures like lists of dictionaries.</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q37. What are *args and **kwargs and when should you use them?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-med">Medium</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong>*args:</strong> Collects any number of positional arguments into a <strong>tuple</strong>. Use when you don't know how many positional args the function will receive.<br><strong>**kwargs:</strong> Collects any number of keyword arguments into a <strong>dictionary</strong>. Use when you don't know how many named args the function will receive.<br><br><code>def func(required_arg, *args, **kwargs):</code> — all three can be combined!</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q38. Explain the 4 Pillars of OOP</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-hard">Advanced</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p><strong>1. Encapsulation:</strong> Hiding internal data and exposing only what is necessary. Private variables with getters/setters. Like a capsule hiding medicine inside.<br><strong>2. Abstraction:</strong> Showing only essential features and hiding complex implementation. A car dashboard shows speed but hides engine mechanics.<br><strong>3. Inheritance:</strong> A child class inherits properties and methods from a parent class. Like a son inheriting father's traits.<br><strong>4. Polymorphism:</strong> Same method name behaves differently in different classes. Dog, Cat, and Cow all have <code>speak()</code> but produce different sounds.</p></div>
+    </div>
+    <div class="qa-item reveal" onclick="this.classList.toggle('open')">
+      <div class="qa-q"><span class="qa-q-text">Q: Why is Exception Handling important?</span><div style="display:flex;align-items:center;gap:8px"><span class="qa-badge b-easy">Easy</span><span class="qa-arrow">▼</span></div></div>
+      <div class="qa-a"><p>Exception handling prevents programs from crashing with an unhandled error. It makes programs robust and user-friendly.<br><br><code>try:</code> — code that might fail<br><code>except SpecificError:</code> — handle a specific error type<br><code>except Exception as e:</code> — catch any error<br><code>finally:</code> — always runs (cleanup, closing files/connections)<br><br>Like an ATM: try = attempt withdrawal, except = handle insufficient funds, finally = always close the session.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="center">
+    <span class="sec-label">Why Ram Sir</span>
+    <h2 class="sec-title">Why Learn Here?</h2>
+    <p class="sec-sub">Not just tutorials — real-life examples, proven teaching methods, and hands-on code from day one.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="wi">💡</div><h3>Real-Life Examples</h3><p>Every concept tied to real-world analogies — ATM, tiffin box, train timetable — learn once, never forget.</p></div>
+    <div class="why-card reveal"><div class="wi">🧑‍💻</div><h3>Hands-On Code</h3><p>250+ working code examples with expected output. Not just theory — you write and run every program.</p></div>
+    <div class="why-card reveal"><div class="wi">🪜</div><h3>Zero to OOP</h3><p>Structured path from absolute beginner to Object Oriented Programming — no gaps, no confusion.</p></div>
+    <div class="why-card reveal"><div class="wi">📝</div><h3>Complete PDF Notes</h3><p>Comprehensive study material in PDF format — refer back anytime, anywhere, on any device.</p></div>
+    <div class="why-card reveal"><div class="wi">🎯</div><h3>Tasks After Every Chapter</h3><p>Practical tasks follow each chapter — apply your knowledge immediately and solidify learning.</p></div>
+    <div class="why-card reveal"><div class="wi">🤝</div><h3>Direct WhatsApp Support</h3><p>Message Ram Sir directly on WhatsApp — every doubt answered promptly, no question left behind.</p></div>
+    <div class="why-card reveal"><div class="wi">⚡</div><h3>Python 3.x — Latest</h3><p>Match statements, f-strings, type hints, walrus operator — modern, industry-ready Python skills.</p></div>
+    <div class="why-card reveal"><div class="wi">🏆</div><h3>Interview Ready</h3><p>38+ essential theory questions, conceptual clarity, and difference-based answers — ace any placement interview.</p></div>
+  </div>
+</section>
+
+<!-- TRAINER -->
+<section id="trainer">
+  <span class="sec-label">Meet Your Trainer</span>
+  <div class="trainer-wrap">
+    <div class="trainer-card reveal">
+      <div class="t-avatar">👨‍💻</div>
+      <div class="t-name">Ramgopal Prajapati</div>
+      <div class="t-handle">@iamramsir · Python Educator</div>
+      <p style="font-size:.85rem;color:var(--muted);line-height:1.6;margin-top:8px">"Python is the key — and I'll help you use it!"</p>
+      <div class="t-stats">
+        <div class="ts"><div class="n">500+</div><div class="l">Students</div></div>
+        <div class="ts"><div class="n">250+</div><div class="l">Questions</div></div>
+        <div class="ts"><div class="n">16</div><div class="l">Chapters</div></div>
+      </div>
+    </div>
+    <div class="trainer-info reveal">
+      <h2>Ram Sir</h2>
+      <div class="handle">Ramgopal Prajapati · @iamramsir · Python Educator</div>
+      <p>Hello! I'm Ramgopal Prajapati, widely known as Ram Sir. My passion is teaching Python in a way that students genuinely fall in love with programming. Real-life analogies, crystal-clear explanations, and hands-on code — that's my teaching philosophy.</p>
+      <p>From basics to OOP, every concept is explained so simply that once you understand it, you never forget it. My website: <strong>ramgopal-prajapati.github.io/Ramgopal/</strong></p>
+      <div class="pills">
+        <span class="pill">🐍 Python 3.x</span><span class="pill">🗃️ SQLite3</span><span class="pill">🎯 OOP</span>
+        <span class="pill">🧵 Threading</span><span class="pill">📊 Data Science</span><span class="pill">🌐 Web Dev</span>
+      </div>
+      <div class="soc-btns">
+        <a href="https://wa.me/919753528324" target="_blank" class="soc-btn wa">💬 WhatsApp Me</a>
+        <a href="https://ramgopal-prajapati.github.io/Ramgopal/" target="_blank" class="soc-btn web">🌐 Visit Website</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUERY FORM -->
+<section id="query">
+  <div class="center">
+    <span class="sec-label">Enroll Now</span>
+    <h2 class="sec-title">Send Your Query</h2>
+    <p class="sec-sub">Fill in your details — Ram Sir will reply personally on WhatsApp! 🚀</p>
+  </div>
+  <div class="form-box reveal">
+    <div class="f-grid">
+      <div class="field"><label>👤 Your Full Name *</label><input type="text" id="fn" placeholder="e.g. Rahul Sharma"></div>
+      <div class="field"><label>📱 WhatsApp Number *</label><input type="tel" id="fp" placeholder="+91 98765 43210"></div>
+      <div class="field"><label>📧 Email Address</label><input type="email" id="fe" placeholder="your@email.com"></div>
+      <div class="field"><label>🎓 Current Class / Qualification</label>
+        <select id="fc">
+          <option value="">-- Select --</option>
+          <option>10th (Matric)</option>
+          <option>11th / 12th</option>
+          <option>BCA / B.Tech / B.Sc (CS)</option>
+          <option>MCA / M.Tech</option>
+          <option>Working Professional</option>
+          <option>Other</option>
+        </select></div>
+      <div class="field"><label>📚 Course of Interest</label>
+        <select id="fco">
+          <option value="">-- Select --</option>
+          <option>Python Basics (Zero to Functions)</option>
+          <option>Python Complete (Zero to OOP)</option>
+          <option>Data Science with Python</option>
+          <option>Web Development (Django / Flask)</option>
+          <option>Full Stack + Python</option>
+        </select></div>
+      <div class="field"><label>⏰ Preferred Timing</label>
+        <select id="ft">
+          <option value="">-- Select --</option>
+          <option>Morning (6 AM – 10 AM)</option>
+          <option>Afternoon (12 PM – 3 PM)</option>
+          <option>Evening (5 PM – 8 PM)</option>
+          <option>Night (8 PM – 11 PM)</option>
+          <option>Weekend Only</option>
+        </select></div>
+      <div class="field f-full"><label>💬 Your Message / Query</label>
+        <textarea id="fm" placeholder="e.g. I'm a complete beginner — is this course right for me? Please share fee and schedule details..."></textarea></div>
+    </div>
+    <button class="submit-btn" onclick="sendWA()">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.527 5.847L.057 23.5l5.79-1.516A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.582-.473-5.1-1.304l-.367-.217-3.437.9.921-3.354-.24-.385A9.96 9.96 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      Send Query on WhatsApp — +91 97535 28324
+    </button>
+    <div class="wa-note">Your message will be sent directly to <span>Ram Sir's WhatsApp</span> — he will reply personally!</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-grid-ft">
+    <div class="fb">
+      <div class="logo">Ram<span>Sir</span></div>
+      <p>Python Complete Guide — From Zero to OOP. Real examples, 250+ questions, and industry-ready skills to launch your programming career.</p>
+    </div>
+    <div class="fc-ft">
+      <h4>Course Chapters</h4>
+      <ul>
+        <li><a href="#chapters">Introduction &amp; Variables</a></li>
+        <li><a href="#chapters">Operators &amp; Loops</a></li>
+        <li><a href="#chapters">Lists, Tuples, Sets, Dict</a></li>
+        <li><a href="#chapters">Functions &amp; Modules</a></li>
+        <li><a href="#chapters">OOP — Classes &amp; Objects</a></li>
+        <li><a href="#chapters">File Handling &amp; SQLite</a></li>
+      </ul>
+    </div>
+    <div class="fc-ft">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#questions">Theory Questions</a></li>
+        <li><a href="#why">Why Ram Sir</a></li>
+        <li><a href="#trainer">About Trainer</a></li>
+        <li><a href="#query">Send Query</a></li>
+        <li><a href="https://wa.me/919753528324" target="_blank">WhatsApp: +91 97535 28324</a></li>
+        <li><a href="https://ramgopal-prajapati.github.io/Ramgopal/" target="_blank">Official Website</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <p>© 2024 Ram Sir | Ramgopal Prajapati | @iamramsir · All rights reserved.</p>
+    <p>Built with ❤️ and 🐍 Python — simple yet powerful</p>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function showCh(id,btn){
+  document.querySelectorAll('.ch-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ch-tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+  setTimeout(()=>{document.querySelectorAll('#'+id+' .reveal:not(.vis)').forEach(el=>obs.observe(el))},100);
+}
+
+function copyCode(btn){
+  const code = btn.closest('.code-block').querySelector('code').innerText;
+  navigator.clipboard.writeText(code).then(()=>{
+    btn.textContent='✓ Copied!';
+    btn.style.color='var(--green)';
+    setTimeout(()=>{btn.textContent='Copy';btn.style.color=''},2000);
+  });
+}
+
+function sendWA(){
+  const name = document.getElementById('fn').value.trim();
+  const ph   = document.getElementById('fp').value.trim();
+  if(!name){alert('Please enter your name!');return}
+  if(!ph)  {alert('Please enter your WhatsApp number!');return}
+  const em  = document.getElementById('fe').value.trim();
+  const cl  = document.getElementById('fc').value;
+  const co  = document.getElementById('fco').value;
+  const ti  = document.getElementById('ft').value;
+  const ms  = document.getElementById('fm').value.trim();
+  const msg = `Hello Ram Sir! 🙏\n\nName: *${name}*\nWhatsApp: ${ph}${em?'\nEmail: '+em:''}${cl?'\nQualification: '+cl:''}${co?'\nCourse Interest: '+co:''}${ti?'\nPreferred Timing: '+ti:''}${ms?'\n\nMessage:\n'+ms:''}\n\n_Sent from Ram Sir Python Guide website_`;
+  window.open('https://wa.me/919753528324?text='+encodeURIComponent(msg),'_blank');
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+</script>
+</body>
+</html>
